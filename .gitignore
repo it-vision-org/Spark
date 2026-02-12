@@ -10,8 +10,11 @@ node_modules
 /coverage
 
 # next.js
-/.next/
+.next/
 /out/
+
+# turbo.js
+.turbo/
 
 # production
 /build
