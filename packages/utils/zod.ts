@@ -1,7 +1,7 @@
 // packages/utils/zod.ts
 import * as z from "zod";
 
-export const RoleEnum = z.enum(["SUPER_ADMIN", "ADMIN"]);
+export const UserTypeEnum = z.enum(["STUDENT", "TEACHER", "PARENT"]);
 
 // Define a schema for input validation
 export const registerSchema = z.object({
@@ -11,7 +11,7 @@ export const registerSchema = z.object({
     .string()
     .min(1, "Password is required")
     .min(8, "Password must have more than 8 characters"),
-  role: RoleEnum,
+  userType: UserTypeEnum,
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   phoneNumber: z.string().optional(),
@@ -27,12 +27,4 @@ export const signInSchema = object({
   password: string({ required_error: "Password is required" })
     .min(1, "Password is required")
     .min(8, "Password must be more than 8 characters"),
-});
-
-export const productUpdateSchema = z.object({
-  name: z.string().min(1, "Name is required").max(255),
-  description: z.string().optional(),
-  price: z.number().positive("Price must be a positive number"),
-  imageUrl: z.string().min(1, "Image URL is required"),
-  stock: z.number().int().nonnegative().optional(),
 });
