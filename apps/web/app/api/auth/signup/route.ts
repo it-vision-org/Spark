@@ -17,42 +17,43 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, password, role, phoneNumber } = result.data;
+    const { name, email, password, userType, phoneNumber } = result.data;
 
     // Check if user with this email already exists
-    const existingAdmin = await db.user.findUnique({
+    const existingUser = await db.user.findUnique({
       where: { email },
     });
 
-    if (existingAdmin) {
+    if (existingUser) {
       return NextResponse.json(
-        { error: "Admin with this email already exists" },
+        { error: "User with this email already exists" },
         { status: 400 }
       );
     }
 
     //hashing the password
-    const newAdmin = await db.user.create({
+    const newUser = await db.user.create({
       data: {
         name,
         email,
         password: await hashPassword(password),
-        role,
+        role: "NORMAL_USER",
+        userType,
         phoneNumber,
       },
     });
 
     //remove the password from response
-    const { password: _, ...adminWithoutPassword } = newAdmin;
+    const { password: _, ...userWithoutPassword } = newUser;
 
     return NextResponse.json(
-      { message: "Admin created successfully", admin: adminWithoutPassword },
+      { message: "Account created successfully", user: userWithoutPassword },
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error creating admin:", error);
+    console.error("Error creating user:", error);
     return NextResponse.json(
-      { error: "Internal server error in creating admin" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

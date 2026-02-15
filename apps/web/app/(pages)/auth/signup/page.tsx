@@ -6,13 +6,13 @@ import Link from "next/link";
 import { toast } from "react-hot-toast";
 import BackButton from "@/components/ui/BackButton";
 
-export default function AdminSignupPage() {
+export default function SignupPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     phoneNumber: "",
-    role: "ADMIN",
+    userType: "STUDENT",
   });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,10 +45,8 @@ export default function AdminSignupPage() {
         throw new Error(data.error || "Registration failed");
       }
 
-      // Show success toast
       toast.success("Account created successfully! Redirecting to login...");
 
-      // Redirect to login on success
       setTimeout(() => {
         router.push("/auth/login");
       }, 1500);
@@ -85,14 +83,14 @@ export default function AdminSignupPage() {
               className=" text-3xl font-bold"
               style={{ color: "var(--foreground)" }}
             >
-              Create Admin Account
+              Create Account
             </h2>
           </div>
           <p
             className="mt-2 text-sm"
             style={{ color: "var(--muted-foreground)" }}
           >
-            Register as a new administrator
+            Register as a new user
           </p>
         </div>
 
@@ -187,23 +185,24 @@ export default function AdminSignupPage() {
 
             <div>
               <label
-                htmlFor="role"
+                htmlFor="userType"
                 className="block text-sm font-medium"
                 style={{ color: "var(--foreground)" }}
               >
-                Admin Role
+                I am a
               </label>
               <select
-                id="role"
-                name="role"
+                id="userType"
+                name="userType"
                 required
                 className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none"
                 style={inputStyle}
-                value={formData.role}
+                value={formData.userType}
                 onChange={handleChange}
               >
-                <option value="ADMIN">Admin</option>
-                <option value="SUPER_ADMIN">Super Admin</option>
+                <option value="STUDENT">Student</option>
+                <option value="TEACHER">Teacher</option>
+                <option value="PARENT">Parent</option>
               </select>
             </div>
           </div>
