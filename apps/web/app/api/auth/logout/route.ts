@@ -7,9 +7,9 @@ export async function POST() {
       { status: 200 }
     );
 
-    // Clear the cookie server-side
+    // Clear the auth cookie
     response.cookies.set({
-      name: "adminToken",
+      name: "authToken",
       value: "",
       httpOnly: true,
       path: "/",
