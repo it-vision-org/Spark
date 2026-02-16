@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import BackButton from "@/components/ui/BackButton";
+import { PhoneNumberInput } from "@/components/ui/PhoneNumberInput";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function SignupPage() {
     email: "",
     password: "",
     phoneNumber: "",
+    countryCode: "+216",
     userType: "STUDENT",
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -30,10 +32,17 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
+      const { countryCode, ...rest } = formData;
+      const payload = {
+        ...rest,
+        phoneNumber: formData.phoneNumber
+          ? `${countryCode} ${formData.phoneNumber}`.trim()
+          : "",
+      };
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
@@ -394,53 +403,10 @@ export default function SignupPage() {
 
               {/* Phone Number */}
               <div className="animate-field-in delay-250">
-                <label 
-                  htmlFor="phoneNumber" 
-                  className="block text-[0.85rem] font-semibold mb-[0.4rem]"
-                  style={{ color: 'var(--color-neutral-700)' /* Orange: #44403c */ }}
-                >
-                  Phone Number{" "}
-                  <span style={{ fontWeight: 400, color: 'var(--color-neutral-500)' /* Orange: #78716c */ }}>
-                    (optional)
-                  </span>
-                </label>
-                <div className="relative">
-                  <svg 
-                    className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" 
-                    style={{ color: 'var(--color-neutral-400)' /* Orange: #a8a29e */ }}
-                    width="18" 
-                    height="18" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                  <input
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="tel"
-                    className="w-full py-[0.85rem] pl-11 pr-4 rounded-xl text-[0.95rem] bg-white transition-all duration-300 outline-none"
-                    style={{
-                      border: '2px solid var(--color-primary-100)', /* Orange: #ffedd5 */
-                      color: 'var(--color-neutral-900)' /* Orange: #292524 */
-                    }}
-                    placeholder="+216 XX XXX XXX"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--color-primary-400)';
-                      e.target.style.boxShadow = '0 0 0 4px rgba(59, 130, 246, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--color-primary-100)';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  />
-                </div>
+              <PhoneNumberInput 
+                formData={formData} 
+                setFormData={setFormData} 
+              />
               </div>
 
               {/* User Type */}
