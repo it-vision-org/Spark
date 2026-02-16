@@ -10,7 +10,17 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const jwt_cookies = await cookies();
 
-    //validate input using zod schema
+    // CSRF protection — verify the request originates from your app
+    const origin = req.headers.get("origin");
+    const host = req.headers.get("host");
+    if (origin && host && !origin.includes(host)) {
+      return NextResponse.json(
+        { error: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
+    // Validate input using zod schema
     const result = signInSchema.safeParse(body);
     if (!result.success) {
       return NextResponse.json(
@@ -21,39 +31,54 @@ export async function POST(req: NextRequest) {
 
     const { email, password } = result.data;
 
-    //find user by email
+    // Find user by email
     const user = await db.user.findUnique({
       where: { email },
     });
 
+    // Use a generic message to prevent user enumeration
     if (!user || user.isDeleted) {
-      return NextResponse.json({ error: "Incorrect email" }, { status: 401 });
-    }
-
-    //compare password
-    const passwordMatch = await comparePassword(password, user.password || "");
-    if (!passwordMatch) {
       return NextResponse.json(
-        { error: "Incorrect password" },
+        { error: "Invalid email or password" },
         { status: 401 }
       );
     }
 
-    //create jwt token
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    // Compare password
+    const passwordMatch = await comparePassword(password, user.password || "");
+    if (!passwordMatch) {
+      return NextResponse.json(
+        { error: "Invalid email or password" },
+        { status: 401 }
+      );
+    }
+
+    // Create JWT token
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      console.error("JWT_SECRET is not set");
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
+    const encodedSecret = new TextEncoder().encode(secret);
 
     const token = await new SignJWT({
       id: user.id,
       email: user.email,
       role: user.role,
+      name: user.name,
+      userType: user.userType,
     })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("7d")
-      .sign(secret);
+      .sign(encodedSecret);
 
     jwt_cookies.set({
-      name: "userToken",
+      name: "authToken",
       value: token,
       httpOnly: true,
       path: "/",
