@@ -1,14 +1,9 @@
 import "@/globals.css";
 import { Toaster } from "react-hot-toast";
-import { LoginButton } from "@/components/ui/LoginButton";
-import { LogoutButton } from "@/components/ui/LogoutButton";
 import { getCurrentUser } from "@/actions/authActions";
+import { AppHeader } from "@/components/ui/AppHeader";
 
-export default async function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function MainLayout({ children }: { children: React.ReactNode }) {
   const user = await getCurrentUser();
 
   return (
@@ -27,21 +22,7 @@ export default async function MainLayout({
             },
           }}
         />
-        <header className="flex items-center justify-between px-6 py-4 border-b">
-          {user ? (
-            <>
-              <span className="text-sm text-gray-600">
-                {user.name || user.email}
-              </span>
-              <LogoutButton />
-            </>
-          ) : (
-            <>
-              <span />
-              <LoginButton />
-            </>
-          )}
-        </header>
+        <AppHeader user={user} />
         {children}
       </body>
     </html>
