@@ -1,22 +1,7 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export interface OrderForEmail {
-  id: string;
-  status: string;
-  totalPrice: number;
-  createdAt: Date | string;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
-  contactInfo?: {
-    name?: string;
-    phone?: string;
-    email?: string;
-  };
-}
+
 export async function sendPasswordResetEmail(email: string, token: string) {
   const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/auth/resetPassword?token=${token}`;
 
@@ -213,18 +198,12 @@ export async function sendContactFormEmail({
   email,
   subject,
   message,
-  imageUrl,
-  storeName,
-  storeId,
 }: {
   recipient: string;
   name: string;
   email: string;
   subject: string;
   message: string;
-  imageUrl?: string;
-  storeName?: string;
-  storeId?: string;
 }) {
   try {
     if (!recipient || !name || !email || !subject || !message) {
@@ -234,45 +213,91 @@ export async function sendContactFormEmail({
 
     console.log("[SERVER] Sending contact form email to:", recipient);
 
-    // Create HTML content for the email
-    let htmlContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #004CFF; margin-bottom: 20px;">New Contact Form Message</h2>
-        <p style="margin-bottom: 5px;"><strong>From:</strong> ${name} (${email})</p>
-        <p style="margin-bottom: 20px;"><strong>Subject:</strong> ${subject}</p>
-        
-        <div style="background-color: #f5f7ff; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-          <h3 style="color: #333; margin-top: 0;">Message:</h3>
-          <p style="white-space: pre-line;">${message}</p>
-        </div>
+    const html = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nouveau message - Wake Up & Spark</title>
+</head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#0f172a;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:32px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(37,99,235,0.12);">
+          <tr>
+            <td style="padding:32px 32px 48px 32px;background:linear-gradient(135deg,#0f172a,#1e3a8a 50%,#2563eb);color:#ffffff;text-align:left;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#3b82f6);display:flex;align-items:center;justify-content:center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7,2V13H10V22L17,10H13L17,2H7Z"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:13px;letter-spacing:0.6px;text-transform:uppercase;opacity:0.85;">Wake Up & Spark</div>
+                  <div style="font-size:22px;font-weight:700;">Nouveau message de contact</div>
+                </div>
+              </div>
+              <p style="margin:20px 0 0 0;font-size:15px;line-height:1.6;max-width:520px;opacity:0.9;">
+                Un membre de la communauté (élève, parent ou enseignant) souhaite entrer en contact. Nous cultivons une réponse bienveillante et confidentielle.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 32px 8px 32px;">
+              <p style="margin:0 0 6px 0;font-size:14px;color:#475569;">De</p>
+              <p style="margin:0 0 16px 0;font-size:16px;font-weight:700;color:#0f172a;">${name} · <span style="color:#2563eb;">${email}</span></p>
+
+              <p style="margin:0 0 6px 0;font-size:14px;color:#475569;">Sujet</p>
+              <p style="margin:0 0 20px 0;font-size:16px;font-weight:600;color:#1e293b;">${subject}</p>
+
+              <div style="padding:18px 20px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc;">
+                <p style="margin:0 0 10px 0;font-size:14px;color:#475569;">Message</p>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:#0f172a;white-space:pre-line;">${message}</p>
+              </div>
+
+              <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
+                <span style="padding:8px 12px;border-radius:999px;background:rgba(37,99,235,0.08);color:#1e3a8a;font-size:12px;font-weight:600;">Confidentiel</span>
+                <span style="padding:8px 12px;border-radius:999px;background:rgba(14,165,233,0.1);color:#0ea5e9;font-size:12px;font-weight:600;">Réponse sous 48h</span>
+                <span style="padding:8px 12px;border-radius:999px;background:rgba(59,130,246,0.12);color:#2563eb;font-size:12px;font-weight:600;">Écoute bienveillante</span>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:10px 32px 28px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;color:#e2e8f0;border-radius:16px;padding:18px 20px;">
+                <tr>
+                  <td style="font-size:13px;line-height:1.6;">
+                    <strong style="color:#f8fafc;">Pourquoi c’est important ?</strong><br />
+                    Chaque message peut concerner une situation sensible (émotionnelle, scolaire, familiale). Traitez-le avec priorité et bienveillance.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 32px 32px 32px;text-align:center;font-size:12px;color:#94a3b8;">
+              Vous pouvez répondre directement à cet email, le champ « Répondre à » est déjà configuré.
+            </td>
+          </tr>
+        </table>
+        <p style="margin:16px 0 0 0;font-size:12px;color:#94a3b8;text-align:center;">
+          Wake Up & Spark · espace sûr pour élèves, parents et enseignants
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
     `;
 
-    // Add image if provided
-    if (imageUrl) {
-      htmlContent += `
-        <div style="margin-bottom: 20px;">
-          <h3 style="color: #333;">Attached Image:</h3>
-          <img src="${imageUrl}" alt="Attached by sender" style="max-width: 100%; max-height: 400px; border-radius: 4px;">
-        </div>
-      `;
-    }
-
-    // Add footer
-    htmlContent += `
-        <div style="border-top: 1px solid #eee; padding-top: 15px; margin-top: 20px; font-size: 12px; color: #777;">
-          <p>This message was sent through the contact form on your ${storeName || "Monkey Print"} store.</p>
-          ${storeId ? `<p>Store ID: ${storeId}</p>` : ""}
-          <p>You can reply directly to this email to respond to the customer.</p>
-        </div>
-      </div>
-    `;
-
-    // Send the email
     const emailResult = await resend.emails.send({
-      from: "Monkey Print <onboarding@resend.dev>",
+      from: "Wake Up & Spark <onboarding@resend.dev>",
       to: recipient,
-      subject: `[Contact Form] ${subject}`,
-      html: htmlContent,
+      subject: `[Wake Up & Spark] ${subject}`,
+      html,
     });
 
     if (!emailResult) {
