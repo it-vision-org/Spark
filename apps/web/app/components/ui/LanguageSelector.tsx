@@ -97,7 +97,7 @@ export function LanguageSelector({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 animate-field-in overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-2xl">
+        <div className="absolute right-0 top-full mt-2 w-64 animate-field-in overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-2xl shadow-blue-100/40 ring-1 ring-slate-100/60">
           <div className="bg-gradient-to-br from-primary-50 to-accent-50 px-4 py-3">
             <p className="text-xs font-bold uppercase tracking-wider text-primary-700">
               Select Language
