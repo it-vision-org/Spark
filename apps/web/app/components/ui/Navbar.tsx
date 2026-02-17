@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
+import { LanguageSelector } from "./LanguageSelector";
 
 type User = { name?: string | null; email?: string | null; profileImage?: string | null } | null;
 
@@ -82,13 +83,7 @@ export function AppHeader({ user }: { user: User }) {
 
         {/* actions */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-300 hover:shadow-md"
-          >
-            <span className="size-2 rounded-full bg-emerald-500" />
-            EN
-          </button>
+          <LanguageSelector/>
 
           {user ? (
             <div className="relative" ref={menuRef}>
