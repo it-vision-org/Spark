@@ -1,8 +1,11 @@
+import { useTranslations } from "next-intl";
+
 export default function HomePage() {
+  const t = useTranslations("HomePage");
   return (
-    <div>
-      <h1>Welcome to My Next.js App!</h1>
-      <p>This is a simple starting page.</p>
+    <div className="h-screen">
+      <h1>{t("Title")}</h1>
+      <p>{t("Description")}</p>
     </div>
   );
 }
