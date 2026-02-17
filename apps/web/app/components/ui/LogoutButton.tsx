@@ -2,7 +2,11 @@
 
 import { useRouter } from "next/navigation";
 
-export function LogoutButton() {
+type Props = {
+  className?: string;
+};
+
+export function LogoutButton({ className }: Props) {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -18,7 +22,10 @@ export function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="text-sm text-red-600 hover:text-red-800 cursor-pointer"
+      className={
+        className ||
+        "inline-flex w-full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+      }
     >
       Logout
     </button>

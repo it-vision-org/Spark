@@ -1,7 +1,7 @@
 import "@/globals.css";
 import { Toaster } from "react-hot-toast";
 import { getCurrentUser } from "@/actions/authActions";
-import { AppHeader } from "@/components/ui/AppHeader";
+import { AppHeader } from "@/components/ui/Navbar";
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   const user = await getCurrentUser();

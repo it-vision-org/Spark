@@ -1,10 +1,17 @@
 import Link from "next/link";
 
-export function LoginButton() {
+type Props = {
+  className?: string;
+};
+
+export function LoginButton({ className }: Props) {
   return (
     <Link
       href="/auth/login"
-      className="text-sm text-blue-600 hover:text-blue-800"
+      className={
+        className ||
+        "text-sm font-semibold text-blue-600 transition hover:text-blue-700"
+      }
     >
       Login
     </Link>
