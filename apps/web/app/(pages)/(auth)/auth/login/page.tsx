@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
 
       // Redirect to admin dashboard on success
       setTimeout(() => {
-        router.push("/admin/dashboard");
+        router.push("/");
       }, 1500);
     } catch (err: any) {
       toast.error(err.message || "An error occurred during login");
