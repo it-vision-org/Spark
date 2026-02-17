@@ -1,13 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { Locale } from "next-intl";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
 import { LanguageSelector } from "./LanguageSelector";
 
-type User = { name?: string | null; email?: string | null; profileImage?: string | null } | null;
+type User = {
+  name?: string | null;
+  email?: string | null;
+  profileImage?: string | null;
+} | null;
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -20,7 +25,13 @@ const NAV_ITEMS = [
 
 const HIDE_PATHS = [""];
 
-export function AppHeader({ user }: { user: User }) {
+export function AppHeader({
+  user,
+  changeLocaleAction,
+}: {
+  user: User;
+  changeLocaleAction?: (locale: Locale) => Promise<void>;
+}) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -41,8 +52,22 @@ export function AppHeader({ user }: { user: User }) {
     return () => document.removeEventListener("pointerdown", handleClick);
   }, []);
 
-  const avatarInitial =
-    (user?.name || user?.email || "S").charAt(0).toUpperCase();
+  const avatarInitial = (user?.name || user?.email || "S")
+    .charAt(0)
+    .toUpperCase();
+
+  // Fallback locale change: set cookie client-side then reload
+  const handleLocaleChange = useCallback(
+    async (locale: Locale) => {
+      if (changeLocaleAction) {
+        await changeLocaleAction(locale);
+      } else {
+        document.cookie = `NEXT_LOCALE=${locale}; path=/;`;
+        window.location.reload();
+      }
+    },
+    [changeLocaleAction],
+  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur">
@@ -83,7 +108,7 @@ export function AppHeader({ user }: { user: User }) {
 
         {/* actions */}
         <div className="flex items-center gap-3">
-          <LanguageSelector/>
+          <LanguageSelector changeLocaleAction={handleLocaleChange} />
 
           {user ? (
             <div className="relative" ref={menuRef}>
@@ -146,7 +171,7 @@ export function AppHeader({ user }: { user: User }) {
                     >
                       Meetings
                     </Link>
-                    <LogoutButton className="inline-flex w-full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50" />
+                    <LogoutButton className="inline-flex w/full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50" />
                   </div>
                 </div>
               )}

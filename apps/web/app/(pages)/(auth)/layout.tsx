@@ -7,36 +7,34 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              borderRadius: "12px",
-              padding: "14px 20px",
-              fontSize: "0.9rem",
-              fontFamily: "Inter, sans-serif",
-              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
+    <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            borderRadius: "12px",
+            padding: "14px 20px",
+            fontSize: "0.9rem",
+            fontFamily: "Inter, sans-serif",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
+          },
+          success: {
+            iconTheme: {
+              primary: "var(--color-primary-600)",
+              secondary: "#fff",
             },
-            success: {
-              iconTheme: {
-                primary: "var(--color-primary-600)",
-                secondary: "#fff",
-              },
+          },
+          error: {
+            duration: 5000,
+            iconTheme: {
+              primary: "#ef4444",
+              secondary: "#fff",
             },
-            error: {
-              duration: 5000,
-              iconTheme: {
-                primary: "#ef4444",
-                secondary: "#fff",
-              },
-            },
-          }}
-        />
-        {children}
-      </body>
-    </html>
+          },
+        }}
+      />
+      {children}
+    </>
   );
 }
