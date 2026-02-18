@@ -1,6 +1,8 @@
 "use server";
 
+import { db } from "@monkeyprint/db";
 import { sendContactFormEmail } from "@monkeyprint/utils/email";
+import { getCurrentUser } from "./authActions";
 
 interface ContactFormData {
   name: string;
@@ -24,14 +26,29 @@ const subjectLabels: Record<string, string> = {
 };
 
 export async function sendContactEmail(data: ContactFormData) {
-  const { name, email, subject, message } = data;
+  const name = data.name?.trim();
+  const email = data.email?.trim();
+  const subject = data.subject?.trim();
+  const message = data.message?.trim();
 
   if (!name || !email || !subject || !message) {
     return { success: false, error: "Tous les champs sont obligatoires" };
   }
 
   try {
-    const subjectLabel = subjectLabels[subject] || subject;
+    const currentUser = await getCurrentUser();
+    const subjectLabel = subjectLabels[subject] || subject || "Contact";
+
+    const submission = await db.contactSubmission.create({
+      data: {
+        name,
+        email,
+        subject: subjectLabel,
+        message,
+        userId: currentUser?.id ?? null,
+      },
+    });
+
     await sendContactFormEmail({
       recipient: CONTACT_RECIPIENT,
       name,
@@ -40,7 +57,7 @@ export async function sendContactEmail(data: ContactFormData) {
       message,
     });
 
-    return { success: true };
+    return { success: true, id: submission.id };
   } catch (error) {
     console.error("[CONTACT] Error in sendContactEmail:", error);
     return { success: false, error: "Une erreur est survenue" };
