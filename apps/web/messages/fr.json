@@ -164,6 +164,20 @@
     }
   },
 
+  "Navbar": {
+    "NavItems": {
+      "Home": "Accueil",
+      "Library": "Bibliothèque",
+      "Events": "Événements",
+      "Achievements": "Réalisations",
+      "Contact": "Contact",
+      "About": "À propos"
+    },
+    "ProfileSettings": "Paramètres du profil",
+    "Meetings": "Réunions",
+    "MemberFallback": "Membre Spark"
+  },
+
   "AuthNavbar": {
     "Home": "Accueil"
   }
