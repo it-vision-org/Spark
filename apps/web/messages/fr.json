@@ -2,5 +2,39 @@
   "HomePage": {
     "Title": "Bienvenue sur notre site web!",
     "Description": "Ceci est une page de démarrage simple."
+  },
+  
+  "LoginPage": {
+    "LeftPanel": {
+      "Title": "Bon Retour",
+      "Subtitle": "Accédez à votre tableau de bord administrateur et gérez la communauté Wake Up & Spark.",
+      "Features": {
+        "Feature1": "Gérer les publications et le contenu",
+        "Feature2": "Examiner les soumissions en attente",
+        "Feature3": "Surveiller l'activité de la communauté",
+        "Feature4": "Organiser des événements et des réunions"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Connexion Administrateur",
+    "Subheading": "Connectez-vous à votre compte administrateur",
+    "Form": {
+      "EmailLabel": "Adresse e-mail",
+      "EmailPlaceholder": "admin@exemple.com",
+      "PasswordLabel": "Mot de passe",
+      "PasswordPlaceholder": "Entrez votre mot de passe",
+      "ForgotPassword": "Mot de passe oublié ?",
+      "SubmitButton": "Se connecter",
+      "SubmittingButton": "Connexion en cours..."
+    },
+    "Divider": "ou",
+    "Footer": {
+      "Text": "Vous n'avez pas de compte ?",
+      "SignUpLink": "S'inscrire"
+    },
+    "Toast": {
+      "Success": "Connexion réussie !",
+      "Error": "Une erreur s'est produite lors de la connexion"
+    }
   }
 }

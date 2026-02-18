@@ -2,5 +2,39 @@
   "HomePage": {
     "Title": "Welcome to our website!",
     "Description": "This is a simple starting page."
+  },
+
+  "LoginPage": {
+    "LeftPanel": {
+      "Title": "Welcome Back",
+      "Subtitle": "Access your admin dashboard and manage the Wake Up & Spark community.",
+      "Features": {
+        "Feature1": "Manage posts & content",
+        "Feature2": "Review pending submissions",
+        "Feature3": "Monitor community activity",
+        "Feature4": "Organize events & meetings"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Admin Login",
+    "Subheading": "Sign in to your admin account",
+    "Form": {
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "admin@example.com",
+      "PasswordLabel": "Password",
+      "PasswordPlaceholder": "Enter your password",
+      "ForgotPassword": "Forgot password?",
+      "SubmitButton": "Sign in",
+      "SubmittingButton": "Signing in..."
+    },
+    "Divider": "or",
+    "Footer": {
+      "Text": "Don't have an account?",
+      "SignUpLink": "Sign up"
+    },
+    "Toast": {
+      "Success": "Login successful!",
+      "Error": "An error occurred during login"
+    }
   }
 }

@@ -2,5 +2,39 @@
   "HomePage": {
     "Title": "مرحبًا بكم في موقعنا!",
     "Description": "هذه صفحة بداية بسيطة."
+  },
+
+  "LoginPage": {
+    "LeftPanel": {
+      "Title": "مرحبا بعودتك",
+      "Subtitle": "قم بالوصول إلى لوحة التحكم الخاصة بك وإدارة مجتمع Wake Up & Spark.",
+      "Features": {
+        "Feature1": "إدارة المنشورات والمحتوى",
+        "Feature2": "مراجعة الطلبات المعلقة",
+        "Feature3": "مراقبة نشاط المجتمع",
+        "Feature4": "تنظيم الفعاليات والاجتماعات"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "تسجيل دخول المسؤول",
+    "Subheading": "قم بتسجيل الدخول إلى حساب المسؤول الخاص بك",
+    "Form": {
+      "EmailLabel": "عنوان البريد الإلكتروني",
+      "EmailPlaceholder": "admin@example.com",
+      "PasswordLabel": "كلمة المرور",
+      "PasswordPlaceholder": "أدخل كلمة المرور",
+      "ForgotPassword": "هل نسيت كلمة المرور؟",
+      "SubmitButton": "تسجيل الدخول",
+      "SubmittingButton": "جاري تسجيل الدخول..."
+    },
+    "Divider": "أو",
+    "Footer": {
+      "Text": "ليس لديك حساب؟",
+      "SignUpLink": "سجل الآن"
+    },
+    "Toast": {
+      "Success": "تم تسجيل الدخول بنجاح!",
+      "Error": "حدث خطأ أثناء تسجيل الدخول"
+    }
   }
 }
