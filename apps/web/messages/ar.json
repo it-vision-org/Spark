@@ -164,6 +164,20 @@
     }
   },
 
+  "Navbar": {
+    "NavItems": {
+      "Home": "الرئيسية",
+      "Library": "المكتبة",
+      "Events": "الفعاليات",
+      "Achievements": "الإنجازات",
+      "Contact": "اتصل بنا",
+      "About": "من نحن"
+    },
+    "ProfileSettings": "إعدادات الحساب",
+    "Meetings": "الاجتماعات",
+    "MemberFallback": "عضو سبارك"
+  },
+  
   "AuthNavbar": {
     "Home": "الرئيسية"
   }

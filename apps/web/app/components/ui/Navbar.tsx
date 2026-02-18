@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { Locale } from "next-intl";
+import { Locale, useTranslations } from "next-intl";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
 import { LanguageSelector } from "./LanguageSelector";
@@ -15,12 +15,12 @@ type User = {
 } | null;
 
 const NAV_ITEMS = [
-  { href: "/", label: "Home" },
-  { href: "/library", label: "Library" },
-  { href: "/events", label: "Events" },
-  { href: "/achievements", label: "Achievements" },
-  { href: "/contact", label: "Contact" },
-  { href: "/about", label: "About Us" },
+  { href: "/", key: "Home" },
+  { href: "/library", key: "Library" },
+  { href: "/events", key: "Events" },
+  { href: "/achievements", key: "Achievements" },
+  { href: "/contact", key: "Contact" },
+  { href: "/about", key: "About" },
 ];
 
 const HIDE_PATHS = [""];
@@ -33,6 +33,8 @@ export function AppHeader({
   changeLocaleAction?: (locale: Locale) => Promise<void>;
 }) {
   const pathname = usePathname();
+  const t = useTranslations("Navbar");
+
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -52,27 +54,29 @@ export function AppHeader({
     return () => document.removeEventListener("pointerdown", handleClick);
   }, []);
 
-  const avatarInitial = (user?.name || user?.email || "S")
+  const avatarInitial = (user?.name || user?.email || t("MemberFallback"))
     .charAt(0)
     .toUpperCase();
 
-  // Fallback locale change: set cookie client-side then reload
   const handleLocaleChange = useCallback(
-    async (locale: Locale) => {
+    async (nextLocale: Locale) => {
       if (changeLocaleAction) {
-        await changeLocaleAction(locale);
+        await changeLocaleAction(nextLocale);
       } else {
-        document.cookie = `NEXT_LOCALE=${locale}; path=/;`;
+        document.cookie = `NEXT_LOCALE=${nextLocale}; path=/;`;
         window.location.reload();
       }
     },
     [changeLocaleAction],
   );
 
+  const dropdownPosition = "right-0";
+
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+    <header
+      className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3">
-        {/* brand */}
         <Link
           href="/"
           className="flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 hover:shadow-md"
@@ -87,7 +91,6 @@ export function AppHeader({
           </div>
         </Link>
 
-        {/* main nav */}
         <nav className="hidden items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => (
             <Link
@@ -101,13 +104,14 @@ export function AppHeader({
                   : "text-slate-700",
               ].join(" ")}
             >
-              {item.label}
+              {t(`NavItems.${item.key}`)}
             </Link>
           ))}
         </nav>
 
-        {/* actions */}
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3"
+        >
           <LanguageSelector changeLocaleAction={handleLocaleChange} />
 
           {user ? (
@@ -120,7 +124,7 @@ export function AppHeader({
                 {user.profileImage ? (
                   <img
                     src={user.profileImage}
-                    alt={user.name || user.email || "Profile"}
+                    alt={user.name || user.email || t("MemberFallback")}
                     className="size-full object-cover"
                   />
                 ) : (
@@ -131,13 +135,15 @@ export function AppHeader({
               </button>
 
               {menuOpen && (
-                <div className="absolute right-0 top-[calc(100%+10px)] w-72 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xl shadow-blue-100/40 ring-1 ring-slate-100/60">
+                <div
+                  className={`absolute ${dropdownPosition} top-[calc(100%+10px)] w-72 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xl shadow-blue-100/40 ring-1 ring-slate-100/60`}
+                >
                   <div className="flex items-center gap-3 px-4 py-3 bg-slate-50">
                     <div className="flex size-12 items-center justify-center overflow-hidden rounded-full border border-slate-200 bg-white">
                       {user.profileImage ? (
                         <img
                           src={user.profileImage}
-                          alt={user.name || user.email || "Profile"}
+                          alt={user.name || user.email || t("MemberFallback")}
                           className="size-full object-cover"
                         />
                       ) : (
@@ -148,7 +154,7 @@ export function AppHeader({
                     </div>
                     <div className="min-w-0">
                       <div className="truncate text-sm font-semibold text-slate-900">
-                        {user.name || "Spark Member"}
+                        {user.name || t("MemberFallback")}
                       </div>
                       <div className="truncate text-xs text-slate-500">
                         {user.email}
@@ -162,14 +168,14 @@ export function AppHeader({
                       className="rounded-xl px-3 py-2 text-sm font-medium text-slate-800 transition hover:bg-blue-50 hover:text-blue-700"
                       onClick={() => setMenuOpen(false)}
                     >
-                      Profile settings
+                      {t("ProfileSettings")}
                     </Link>
                     <Link
                       href="/meetings"
                       className="rounded-xl px-3 py-2 text-sm font-medium text-slate-800 transition hover:bg-blue-50 hover:text-blue-700"
                       onClick={() => setMenuOpen(false)}
                     >
-                      Meetings
+                      {t("Meetings")}
                     </Link>
                     <LogoutButton className="inline-flex w/full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-50" />
                   </div>
