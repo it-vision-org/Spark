@@ -93,5 +93,39 @@
       "Success": "Account created successfully! Redirecting to login...",
       "Error": "An error occurred during registration"
     }
+  },
+
+  "ForgotPasswordPage": {
+    "LeftPanel": {
+      "Title": "Reset Your\nPassword",
+      "Subtitle": "No worries! Enter your email and we'll send you instructions to reset your password.",
+      "Features": {
+        "Feature1": "Secure password reset process",
+        "Feature2": "Email sent within minutes",
+        "Feature3": "Link valid for 24 hours",
+        "Feature4": "Get back to inspiring others"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Forgot Password",
+    "Subheading": "Enter your email to receive a password reset link",
+    "Form": {
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "your.email@example.com",
+      "EmailHint": "We'll send a recovery link to this email address",
+      "SubmitButton": "Send Reset Link",
+      "SubmittingButton": "Sending..."
+    },
+    "Divider": "or",
+    "BackToLogin": "Back to login",
+    "HelpBox": {
+      "Title": "Didn't receive the email?",
+      "Description": "Check your spam folder or wait a few minutes before trying again."
+    },
+    "Toast": {
+      "Success": "Password reset email sent successfully! Please check your inbox.",
+      "ErrorDefault": "Failed to send password reset email",
+      "ErrorGeneral": "An error occurred. Please try again later."
+    }
   }
 }

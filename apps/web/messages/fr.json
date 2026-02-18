@@ -93,5 +93,39 @@
       "Success": "Compte créé avec succès ! Redirection vers la connexion...",
       "Error": "Une erreur s'est produite lors de l'inscription"
     }
-  }
+  },
+
+  "ForgotPasswordPage": {
+    "LeftPanel": {
+      "Title": "Réinitialisez\nVotre Mot de Passe",
+      "Subtitle": "Pas de soucis ! Entrez votre e-mail et nous vous enverrons des instructions pour réinitialiser votre mot de passe.",
+      "Features": {
+        "Feature1": "Réinitialisation sécurisé",
+        "Feature2": "E-mail envoyé en quelques minutes",
+        "Feature3": "Lien valide pendant 24 heures",
+        "Feature4": "Retournez inspirer les autres"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Mot de Passe Oublié",
+    "Subheading": "Entrez votre e-mail pour recevoir un lien de réinitialisation",
+    "Form": {
+      "EmailLabel": "Adresse e-mail",
+      "EmailPlaceholder": "votre.email@exemple.com",
+      "EmailHint": "Nous enverrons un lien de récupération à cette adresse e-mail",
+      "SubmitButton": "Envoyer le Lien",
+      "SubmittingButton": "Envoi en cours..."
+    },
+    "Divider": "ou",
+    "BackToLogin": "Retour à la connexion",
+    "HelpBox": {
+      "Title": "Vous n'avez pas reçu l'e-mail ?",
+      "Description": "Vérifiez votre dossier spam ou attendez quelques minutes avant de réessayer."
+    },
+    "Toast": {
+      "Success": "E-mail de réinitialisation envoyé avec succès ! Veuillez vérifier votre boîte de réception.",
+      "ErrorDefault": "Échec de l'envoi de l'e-mail de réinitialisation",
+      "ErrorGeneral": "Une erreur s'est produite. Veuillez réessayer plus tard."
+    }
+  }  
 }
