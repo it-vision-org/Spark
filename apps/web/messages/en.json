@@ -162,5 +162,9 @@
         "Success": "Password reset successfully!"
       }
     }
+  },
+
+  "AuthNavbar": {
+    "Home": "Home"
   }
 }

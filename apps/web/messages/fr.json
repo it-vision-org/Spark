@@ -162,5 +162,9 @@
         "Success": "Mot de passe réinitialisé avec succès !"
       }
     }
+  },
+
+  "AuthNavbar": {
+    "Home": "Accueil"
   }
 }
