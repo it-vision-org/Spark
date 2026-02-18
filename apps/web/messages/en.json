@@ -2,5 +2,169 @@
   "HomePage": {
     "Title": "Welcome to our website!",
     "Description": "This is a simple starting page."
+  },
+
+  "LoginPage": {
+    "LeftPanel": {
+      "Title": "Welcome Back",
+      "Subtitle": "Access your admin dashboard and manage the Wake Up & Spark community.",
+      "Features": {
+        "Feature1": "Manage posts & content",
+        "Feature2": "Review pending submissions",
+        "Feature3": "Monitor community activity",
+        "Feature4": "Organize events & meetings"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Admin Login",
+    "Subheading": "Sign in to your admin account",
+    "Form": {
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "admin@example.com",
+      "PasswordLabel": "Password",
+      "PasswordPlaceholder": "Enter your password",
+      "ForgotPassword": "Forgot password?",
+      "SubmitButton": "Sign in",
+      "SubmittingButton": "Signing in..."
+    },
+    "Divider": "or",
+    "Footer": {
+      "Text": "Don't have an account?",
+      "SignUpLink": "Sign up"
+    },
+    "Toast": {
+      "Success": "Login successful!",
+      "Error": "An error occurred during login"
+    }
+  },
+
+  "SignupPage": {
+    "LeftPanel": {
+      "Title": "Wake Up\nAnd Spark",
+      "Subtitle": "A community where students, teachers, and parents grow together through shared wisdom.",
+      "Features": {
+        "Feature1": "Share thoughts & moral lessons",
+        "Feature2": "Post anonymously if you prefer",
+        "Feature3": "Discover inspiring books & articles",
+        "Feature4": "Join events & community meetings"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Join Our Community",
+    "Subheading": "Start your journey of growth and inspiration",
+    "Form": {
+      "NameLabel": "Full Name",
+      "NamePlaceholder": "Enter your full name",
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "your.email@example.com",
+      "PasswordLabel": "Password",
+      "PasswordPlaceholder": "Create a strong password",
+      "PasswordHint": "Must be at least 8 characters",
+      "PhoneLabel": "Phone Number",
+      "PhonePlaceholder": "Enter phone number",
+      "PhoneOptional": "(Optional)",
+      "UserTypeLabel": "I am a",
+      "UserTypes": {
+        "Student": {
+          "Label": "Student",
+          "Icon": "🎓",
+          "Description": "I'm here to learn & share"
+        },
+        "Teacher": {
+          "Label": "Teacher",
+          "Icon": "📚",
+          "Description": "I guide & inspire"
+        },
+        "Parent": {
+          "Label": "Parent",
+          "Icon": "🏠",
+          "Description": "I support & engage"
+        }
+      },
+      "SubmitButton": "Create Account",
+      "SubmittingButton": "Creating your account..."
+    },
+    "Divider": "or",
+    "Footer": {
+      "Text": "Already have an account?",
+      "SignInLink": "Sign in"
+    },
+    "Toast": {
+      "Success": "Account created successfully! Redirecting to login...",
+      "Error": "An error occurred during registration"
+    }
+  },
+
+  "ForgotPasswordPage": {
+    "LeftPanel": {
+      "Title": "Reset Your\nPassword",
+      "Subtitle": "No worries! Enter your email and we'll send you instructions to reset your password.",
+      "Features": {
+        "Feature1": "Secure password reset process",
+        "Feature2": "Email sent within minutes",
+        "Feature3": "Link valid for 24 hours",
+        "Feature4": "Get back to inspiring others"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Forgot Password",
+    "Subheading": "Enter your email to receive a password reset link",
+    "Form": {
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "your.email@example.com",
+      "EmailHint": "We'll send a recovery link to this email address",
+      "SubmitButton": "Send Reset Link",
+      "SubmittingButton": "Sending..."
+    },
+    "Divider": "or",
+    "BackToLogin": "Back to login",
+    "HelpBox": {
+      "Title": "Didn't receive the email?",
+      "Description": "Check your spam folder or wait a few minutes before trying again."
+    },
+    "Toast": {
+      "Success": "Password reset email sent successfully! Please check your inbox.",
+      "ErrorDefault": "Failed to send password reset email",
+      "ErrorGeneral": "An error occurred. Please try again later."
+    }
+  },
+
+  "ResetPasswordPage": {
+    "LeftPanel": {
+      "TitleLine1": "Create New",
+      "TitleLine2": "Password",
+      "Subtitle": "Choose a strong password to secure your account and protect your personal information.",
+      "Feature1": "Use at least 8 characters",
+      "Feature2": "Mix letters, numbers & symbols",
+      "Feature3": "Avoid common passwords",
+      "Feature4": "Keep it unique and secure"
+    },
+    "Form": {
+      "Title": "Reset Password",
+      "Subtitle": "Create a new password for your account",
+      "NewPassword": "New Password",
+      "ConfirmPassword": "Confirm Password",
+      "PlaceholderNew": "Enter new password",
+      "PlaceholderConfirm": "Confirm new password",
+      "PasswordsMustMatch": "Passwords must match",
+      "PasswordStrength": "Password Strength",
+      "Strong": "Strong",
+      "Weak": "Weak",
+      "ResetButton": "Reset Password",
+      "Resetting": "Resetting...",
+      "BackToLogin": "Back to login",
+      "Or": "or",
+      "Loading": "Loading...",
+      "Errors": {
+        "NotMatch": "Passwords do not match",
+        "Failed": "Failed to reset password",
+        "ServerError": "An error occurred. Please try again later.",
+        "Success": "Password reset successfully!"
+      }
+    }
+  },
+
+  "AuthNavbar": {
+    "Home": "Home"
   }
 }

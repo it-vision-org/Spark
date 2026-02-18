@@ -2,5 +2,169 @@
   "HomePage": {
     "Title": "مرحبًا بكم في موقعنا!",
     "Description": "هذه صفحة بداية بسيطة."
+  },
+
+  "LoginPage": {
+    "LeftPanel": {
+      "Title": "مرحبا بعودتك",
+      "Subtitle": "قم بالوصول إلى لوحة التحكم الخاصة بك وإدارة مجتمع Wake Up & Spark.",
+      "Features": {
+        "Feature1": "إدارة المنشورات والمحتوى",
+        "Feature2": "مراجعة الطلبات المعلقة",
+        "Feature3": "مراقبة نشاط المجتمع",
+        "Feature4": "تنظيم الفعاليات والاجتماعات"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "تسجيل دخول المسؤول",
+    "Subheading": "قم بتسجيل الدخول إلى حساب المسؤول الخاص بك",
+    "Form": {
+      "EmailLabel": "عنوان البريد الإلكتروني",
+      "EmailPlaceholder": "admin@example.com",
+      "PasswordLabel": "كلمة المرور",
+      "PasswordPlaceholder": "أدخل كلمة المرور",
+      "ForgotPassword": "هل نسيت كلمة المرور؟",
+      "SubmitButton": "تسجيل الدخول",
+      "SubmittingButton": "جاري تسجيل الدخول..."
+    },
+    "Divider": "أو",
+    "Footer": {
+      "Text": "ليس لديك حساب؟",
+      "SignUpLink": "سجل الآن"
+    },
+    "Toast": {
+      "Success": "تم تسجيل الدخول بنجاح!",
+      "Error": "حدث خطأ أثناء تسجيل الدخول"
+    }
+  },
+
+  "SignupPage": {
+    "LeftPanel": {
+      "Title": "استيقظ\nوتألق",
+      "Subtitle": "مجتمع حيث ينمو الطلاب والمعلمون وأولياء الأمور معًا من خلال الحكمة المشتركة.",
+      "Features": {
+        "Feature1": "شارك الأفكار والدروس الأخلاقية",
+        "Feature2": "انشر بشكل مجهول إذا كنت تفضل ذلك",
+        "Feature3": "اكتشف الكتب والمقالات الملهمة",
+        "Feature4": "انضم إلى الفعاليات والاجتماعات المجتمعية"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "انضم إلى مجتمعنا",
+    "Subheading": "ابدأ رحلتك في النمو والإلهام",
+    "Form": {
+      "NameLabel": "الاسم الكامل",
+      "NamePlaceholder": "أدخل اسمك الكامل",
+      "EmailLabel": "عنوان البريد الإلكتروني",
+      "EmailPlaceholder": "your.email@example.com",
+      "PasswordLabel": "كلمة المرور",
+      "PasswordPlaceholder": "أنشئ كلمة مرور قوية",
+      "PasswordHint": "يجب أن تتكون من 8 أحرف على الأقل",
+      "PhoneLabel": "رقم الهاتف",
+      "PhonePlaceholder": "أدخل رقم الهاتف",
+      "PhoneOptional": "(اختياري)",
+      "UserTypeLabel": "أنا",
+      "UserTypes": {
+        "Student": {
+          "Label": "طالب",
+          "Icon": "🎓",
+          "Description": "أنا هنا للتعلم والمشاركة"
+        },
+        "Teacher": {
+          "Label": "معلم",
+          "Icon": "📚",
+          "Description": "أقوم بالتوجيه والإلهام"
+        },
+        "Parent": {
+          "Label": "ولي أمر",
+          "Icon": "🏠",
+          "Description": "أقدم الدعم والمشاركة"
+        }
+      },
+      "SubmitButton": "إنشاء حساب",
+      "SubmittingButton": "جاري إنشاء حسابك..."
+    },
+    "Divider": "أو",
+    "Footer": {
+      "Text": "لديك حساب بالفعل؟",
+      "SignInLink": "تسجيل الدخول"
+    },
+    "Toast": {
+      "Success": "تم إنشاء الحساب بنجاح! جاري التوجيه إلى تسجيل الدخول...",
+      "Error": "حدث خطأ أثناء التسجيل"
+    }
+  },
+
+  "ForgotPasswordPage": {
+    "LeftPanel": {
+      "Title": "إعادة تعيين\nكلمة المرور",
+      "Subtitle": "لا تقلق! أدخل بريدك الإلكتروني وسنرسل لك تعليمات لإعادة تعيين كلمة المرور.",
+      "Features": {
+        "Feature1": "عملية إعادة تعيين آمنة لكلمة المرور",
+        "Feature2": "إرسال البريد الإلكتروني في دقائق",
+        "Feature3": "الرابط صالح لمدة 24 ساعة",
+        "Feature4": "عد إلى إلهام الآخرين"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "نسيت كلمة المرور",
+    "Subheading": "أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور",
+    "Form": {
+      "EmailLabel": "عنوان البريد الإلكتروني",
+      "EmailPlaceholder": "your.email@example.com",
+      "EmailHint": "سنرسل رابط الاسترداد إلى هذا البريد الإلكتروني",
+      "SubmitButton": "إرسال رابط إعادة التعيين",
+      "SubmittingButton": "جاري الإرسال..."
+    },
+    "Divider": "أو",
+    "BackToLogin": "العودة إلى تسجيل الدخول",
+    "HelpBox": {
+      "Title": "لم تستلم البريد الإلكتروني؟",
+      "Description": "تحقق من مجلد البريد العشوائي أو انتظر بضع دقائق قبل المحاولة مرة أخرى."
+    },
+    "Toast": {
+      "Success": "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح! يرجى التحقق من صندوق الوارد.",
+      "ErrorDefault": "فشل إرسال بريد إعادة تعيين كلمة المرور",
+      "ErrorGeneral": "حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا."
+    }
+  },
+
+  "ResetPasswordPage": {
+    "LeftPanel": {
+      "TitleLine1": "إنشاء",
+      "TitleLine2": "كلمة مرور جديدة",
+      "Subtitle": "اختر كلمة مرور قوية لحماية حسابك.",
+      "Feature1": "8 أحرف على الأقل",
+      "Feature2": "حروف وأرقام ورموز",
+      "Feature3": "تجنب الكلمات الشائعة",
+      "Feature4": "اجعلها فريدة وآمنة"
+    },
+    "Form": {
+      "Title": "إعادة تعيين كلمة المرور",
+      "Subtitle": "أنشئ كلمة مرور جديدة لحسابك",
+      "NewPassword": "كلمة المرور الجديدة",
+      "ConfirmPassword": "تأكيد كلمة المرور",
+      "PlaceholderNew": "أدخل كلمة المرور الجديدة",
+      "PlaceholderConfirm": "أكد كلمة المرور",
+      "PasswordsMustMatch": "يجب أن تتطابق كلمتا المرور",
+      "PasswordStrength": "قوة كلمة المرور",
+      "Strong": "قوية",
+      "Weak": "ضعيفة",
+      "ResetButton": "إعادة التعيين",
+      "Resetting": "جارٍ إعادة التعيين...",
+      "BackToLogin": "العودة لتسجيل الدخول",
+      "Or": "أو",
+      "Loading": "جارٍ التحميل...",
+      "Errors": {
+        "NotMatch": "كلمتا المرور غير متطابقتين",
+        "Failed": "فشل في إعادة التعيين",
+        "ServerError": "حدث خطأ. حاول مرة أخرى لاحقًا.",
+        "Success": "تمت إعادة تعيين كلمة المرور بنجاح!"
+      }
+    }
+  },
+
+  "AuthNavbar": {
+    "Home": "الرئيسية"
   }
 }
