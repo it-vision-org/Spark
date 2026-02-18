@@ -1,5 +1,7 @@
 import "@/globals.css";
 import { Toaster } from "react-hot-toast";
+import { AuthNavbar } from "@/components/ui/AuthNavbar";
+import { Locale } from "next-intl";
 
 export default function AuthLayout({
   children,
@@ -34,6 +36,7 @@ export default function AuthLayout({
           },
         }}
       />
+      <AuthNavbar />
       {children}
     </>
   );
