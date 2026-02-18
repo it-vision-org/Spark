@@ -36,5 +36,62 @@
       "Success": "تم تسجيل الدخول بنجاح!",
       "Error": "حدث خطأ أثناء تسجيل الدخول"
     }
+  },
+
+  "SignupPage": {
+    "LeftPanel": {
+      "Title": "استيقظ\nوتألق",
+      "Subtitle": "مجتمع حيث ينمو الطلاب والمعلمون وأولياء الأمور معًا من خلال الحكمة المشتركة.",
+      "Features": {
+        "Feature1": "شارك الأفكار والدروس الأخلاقية",
+        "Feature2": "انشر بشكل مجهول إذا كنت تفضل ذلك",
+        "Feature3": "اكتشف الكتب والمقالات الملهمة",
+        "Feature4": "انضم إلى الفعاليات والاجتماعات المجتمعية"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "انضم إلى مجتمعنا",
+    "Subheading": "ابدأ رحلتك في النمو والإلهام",
+    "Form": {
+      "NameLabel": "الاسم الكامل",
+      "NamePlaceholder": "أدخل اسمك الكامل",
+      "EmailLabel": "عنوان البريد الإلكتروني",
+      "EmailPlaceholder": "your.email@example.com",
+      "PasswordLabel": "كلمة المرور",
+      "PasswordPlaceholder": "أنشئ كلمة مرور قوية",
+      "PasswordHint": "يجب أن تتكون من 8 أحرف على الأقل",
+      "PhoneLabel": "رقم الهاتف",
+      "PhonePlaceholder": "أدخل رقم الهاتف",
+      "PhoneOptional": "(اختياري)",
+      "UserTypeLabel": "أنا",
+      "UserTypes": {
+        "Student": {
+          "Label": "طالب",
+          "Icon": "🎓",
+          "Description": "أنا هنا للتعلم والمشاركة"
+        },
+        "Teacher": {
+          "Label": "معلم",
+          "Icon": "📚",
+          "Description": "أقوم بالتوجيه والإلهام"
+        },
+        "Parent": {
+          "Label": "ولي أمر",
+          "Icon": "🏠",
+          "Description": "أقدم الدعم والمشاركة"
+        }
+      },
+      "SubmitButton": "إنشاء حساب",
+      "SubmittingButton": "جاري إنشاء حسابك..."
+    },
+    "Divider": "أو",
+    "Footer": {
+      "Text": "لديك حساب بالفعل؟",
+      "SignInLink": "تسجيل الدخول"
+    },
+    "Toast": {
+      "Success": "تم إنشاء الحساب بنجاح! جاري التوجيه إلى تسجيل الدخول...",
+      "Error": "حدث خطأ أثناء التسجيل"
+    }
   }
 }

@@ -3,7 +3,7 @@
     "Title": "Bienvenue sur notre site web!",
     "Description": "Ceci est une page de démarrage simple."
   },
-  
+
   "LoginPage": {
     "LeftPanel": {
       "Title": "Bon Retour",
@@ -35,6 +35,63 @@
     "Toast": {
       "Success": "Connexion réussie !",
       "Error": "Une erreur s'est produite lors de la connexion"
+    }
+  },
+
+  "SignupPage": {
+    "LeftPanel": {
+      "Title": "Wake Up\nAnd Spark",
+      "Subtitle": "Une communauté où les étudiants, les enseignants et les parents grandissent ensemble.",
+      "Features": {
+        "Feature1": "Partager pensées et leçons morales",
+        "Feature2": "Découvrir livres & articles inspirants",
+        "Feature3": "Rejoindre événements & réunions",
+        "Feature4": "Publier anonymement"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Rejoignez Notre Communauté",
+    "Subheading": "Commencez votre voyage de croissance et d'inspiration",
+    "Form": {
+      "NameLabel": "Nom complet",
+      "NamePlaceholder": "Entrez votre nom complet",
+      "EmailLabel": "Adresse e-mail",
+      "EmailPlaceholder": "votre.email@exemple.com",
+      "PasswordLabel": "Mot de passe",
+      "PasswordPlaceholder": "Créez un mot de passe fort",
+      "PasswordHint": "Doit contenir au moins 8 caractères",
+      "PhoneLabel": "Numéro de téléphone",
+      "PhonePlaceholder": "Entrez le numéro de téléphone",
+      "PhoneOptional": "(Optionnel)",
+      "UserTypeLabel": "Je suis un(e)",
+      "UserTypes": {
+        "Student": {
+          "Label": "Étudiant(e)",
+          "Icon": "🎓",
+          "Description": "Je suis là pour apprendre et partager"
+        },
+        "Teacher": {
+          "Label": "Enseignant(e)",
+          "Icon": "📚",
+          "Description": "Je guide et inspire"
+        },
+        "Parent": {
+          "Label": "Parent",
+          "Icon": "🏠",
+          "Description": "Je soutiens et m'engage"
+        }
+      },
+      "SubmitButton": "Créer un compte",
+      "SubmittingButton": "Création de votre compte..."
+    },
+    "Divider": "ou",
+    "Footer": {
+      "Text": "Vous avez déjà un compte ?",
+      "SignInLink": "Se connecter"
+    },
+    "Toast": {
+      "Success": "Compte créé avec succès ! Redirection vers la connexion...",
+      "Error": "Une erreur s'est produite lors de l'inscription"
     }
   }
 }

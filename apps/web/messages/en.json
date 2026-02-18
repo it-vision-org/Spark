@@ -36,5 +36,62 @@
       "Success": "Login successful!",
       "Error": "An error occurred during login"
     }
+  },
+
+  "SignupPage": {
+    "LeftPanel": {
+      "Title": "Wake Up\nAnd Spark",
+      "Subtitle": "A community where students, teachers, and parents grow together through shared wisdom.",
+      "Features": {
+        "Feature1": "Share thoughts & moral lessons",
+        "Feature2": "Post anonymously if you prefer",
+        "Feature3": "Discover inspiring books & articles",
+        "Feature4": "Join events & community meetings"
+      }
+    },
+    "Brand": "Wake Up & Spark",
+    "Heading": "Join Our Community",
+    "Subheading": "Start your journey of growth and inspiration",
+    "Form": {
+      "NameLabel": "Full Name",
+      "NamePlaceholder": "Enter your full name",
+      "EmailLabel": "Email Address",
+      "EmailPlaceholder": "your.email@example.com",
+      "PasswordLabel": "Password",
+      "PasswordPlaceholder": "Create a strong password",
+      "PasswordHint": "Must be at least 8 characters",
+      "PhoneLabel": "Phone Number",
+      "PhonePlaceholder": "Enter phone number",
+      "PhoneOptional": "(Optional)",
+      "UserTypeLabel": "I am a",
+      "UserTypes": {
+        "Student": {
+          "Label": "Student",
+          "Icon": "🎓",
+          "Description": "I'm here to learn & share"
+        },
+        "Teacher": {
+          "Label": "Teacher",
+          "Icon": "📚",
+          "Description": "I guide & inspire"
+        },
+        "Parent": {
+          "Label": "Parent",
+          "Icon": "🏠",
+          "Description": "I support & engage"
+        }
+      },
+      "SubmitButton": "Create Account",
+      "SubmittingButton": "Creating your account..."
+    },
+    "Divider": "or",
+    "Footer": {
+      "Text": "Already have an account?",
+      "SignInLink": "Sign in"
+    },
+    "Toast": {
+      "Success": "Account created successfully! Redirecting to login...",
+      "Error": "An error occurred during registration"
+    }
   }
 }
