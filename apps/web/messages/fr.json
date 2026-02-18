@@ -127,5 +127,40 @@
       "ErrorDefault": "Échec de l'envoi de l'e-mail de réinitialisation",
       "ErrorGeneral": "Une erreur s'est produite. Veuillez réessayer plus tard."
     }
-  }  
+  },
+
+  "ResetPasswordPage": {
+    "LeftPanel": {
+      "TitleLine1": "Créer un",
+      "TitleLine2": "nouveau mot de passe",
+      "Subtitle": "Choisissez un mot de passe sécurisé pour protéger votre compte.",
+      "Feature1": "Au moins 8 caractères",
+      "Feature2": "Lettres, chiffres et symboles",
+      "Feature3": "Évitez les mots de passe courants",
+      "Feature4": "Unique et sécurisé"
+    },
+    "Form": {
+      "Title": "Réinitialiser le mot de passe",
+      "Subtitle": "Créez un nouveau mot de passe",
+      "NewPassword": "Nouveau mot de passe",
+      "ConfirmPassword": "Confirmer le mot de passe",
+      "PlaceholderNew": "Entrez un nouveau mot de passe",
+      "PlaceholderConfirm": "Confirmez le mot de passe",
+      "PasswordsMustMatch": "Les mots de passe doivent correspondre",
+      "PasswordStrength": "Force du mot de passe",
+      "Strong": "Fort",
+      "Weak": "Faible",
+      "ResetButton": "Réinitialiser",
+      "Resetting": "Réinitialisation...",
+      "BackToLogin": "Retour à la connexion",
+      "Or": "ou",
+      "Loading": "Chargement...",
+      "Errors": {
+        "NotMatch": "Les mots de passe ne correspondent pas",
+        "Failed": "Échec de la réinitialisation",
+        "ServerError": "Une erreur est survenue. Réessayez plus tard.",
+        "Success": "Mot de passe réinitialisé avec succès !"
+      }
+    }
+  }
 }

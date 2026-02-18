@@ -127,5 +127,40 @@
       "ErrorDefault": "Failed to send password reset email",
       "ErrorGeneral": "An error occurred. Please try again later."
     }
+  },
+
+  "ResetPasswordPage": {
+    "LeftPanel": {
+      "TitleLine1": "Create New",
+      "TitleLine2": "Password",
+      "Subtitle": "Choose a strong password to secure your account and protect your personal information.",
+      "Feature1": "Use at least 8 characters",
+      "Feature2": "Mix letters, numbers & symbols",
+      "Feature3": "Avoid common passwords",
+      "Feature4": "Keep it unique and secure"
+    },
+    "Form": {
+      "Title": "Reset Password",
+      "Subtitle": "Create a new password for your account",
+      "NewPassword": "New Password",
+      "ConfirmPassword": "Confirm Password",
+      "PlaceholderNew": "Enter new password",
+      "PlaceholderConfirm": "Confirm new password",
+      "PasswordsMustMatch": "Passwords must match",
+      "PasswordStrength": "Password Strength",
+      "Strong": "Strong",
+      "Weak": "Weak",
+      "ResetButton": "Reset Password",
+      "Resetting": "Resetting...",
+      "BackToLogin": "Back to login",
+      "Or": "or",
+      "Loading": "Loading...",
+      "Errors": {
+        "NotMatch": "Passwords do not match",
+        "Failed": "Failed to reset password",
+        "ServerError": "An error occurred. Please try again later.",
+        "Success": "Password reset successfully!"
+      }
+    }
   }
 }
