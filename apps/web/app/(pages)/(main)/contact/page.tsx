@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   AlertCircle,
@@ -30,79 +31,138 @@ const staggerContainer = {
   },
 };
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Point de ralliement",
-    details: ["Wake Up & Spark", "Lycée Habib Thameur, Tunisie"],
-  },
-  {
-    icon: MessageSquare,
-    title: "Email principal",
-    details: ["contact@wakeupandspark.com", "Réponse sous 48h"],
-  },
-  {
-    icon: Clock,
-    title: "Délai de réponse",
-    details: ["48h max pour les demandes générales", "24h pour les situations sensibles"],
-  },
-  {
-    icon: ShieldCheck,
-    title: "Confidentialité",
-    details: ["Les messages sensibles restent privés", "Espace sûr pour élèves, parents, enseignants"],
-  },
-];
-
-const channels = [
-  {
-    title: "Écoute et soutien",
-    description: "Partage anonyme ou accompagné pour gérer les émotions et les situations difficiles.",
-    tags: ["Bienveillance", "Anonymat possible", "Réponses humaines"],
-  },
-  {
-    title: "Parents & enseignants",
-    description: "Questions sur l’accompagnement, la vie du club ou les besoins d’une classe.",
-    tags: ["Parents", "Enseignants", "Orientation"],
-  },
-  {
-    title: "Partenariats & ateliers",
-    description: "Envie d’apporter un atelier, un témoignage ou un soutien matériel au club.",
-    tags: ["Entreprises", "Associations", "Invités"],
-  },
-  {
-    title: "Technique & accès",
-    description: "Problèmes de connexion, de publication ou de notification sur la plateforme.",
-    tags: ["Support", "Accès", "Compte"],
-  },
-];
-
-const pledges = [
-  "Réponse en 48h (24h si sensible)",
-  "Confidentialité et respect",
-  "Guides et ressources émotionnelles",
-];
-
-const faqItems = [
-  {
-    question: "Puis-je écrire anonymement ?",
-    answer:
-      "Oui. Mentionnez-le dans votre message ; nous traiterons votre demande sans révéler votre identité aux autres membres.",
-  },
-  {
-    question: "Qui lit les messages sensibles ?",
-    answer:
-      "Seule l’équipe encadrante Wake Up & Spark, engagée sur la confidentialité et la bienveillance.",
-  },
-  {
-    question: "Comment proposer un atelier ou un partenariat ?",
-    answer:
-      "Choisissez “Partenariat / sponsor” ou “Événement / atelier” dans le sujet, décrivez votre idée et vos disponibilités.",
-  },
-];
-
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 export default function ContactPage() {
+  const t = useTranslations("ContactPage");
+  const locale = useLocale();
+  const direction = locale === "ar" ? "rtl" : "ltr";
+  const isRTL = direction === "rtl";
+
+  const pills = useMemo(
+    () => [
+      t("Hero.Pills.Response"),
+      t("Hero.Pills.Anonymous"),
+      t("Hero.Pills.Community"),
+    ],
+    [t],
+  );
+
+  const contactInfo = useMemo(
+    () => [
+      {
+        icon: MapPin,
+        title: t("ContactInfo.Rally.Title"),
+        details: [t("ContactInfo.Rally.Line1"), t("ContactInfo.Rally.Line2")],
+      },
+      {
+        icon: MessageSquare,
+        title: t("ContactInfo.Email.Title"),
+        details: [t("ContactInfo.Email.Line1"), t("ContactInfo.Email.Line2")],
+      },
+      {
+        icon: Clock,
+        title: t("ContactInfo.Response.Title"),
+        details: [
+          t("ContactInfo.Response.Line1"),
+          t("ContactInfo.Response.Line2"),
+        ],
+      },
+      {
+        icon: ShieldCheck,
+        title: t("ContactInfo.Privacy.Title"),
+        details: [
+          t("ContactInfo.Privacy.Line1"),
+          t("ContactInfo.Privacy.Line2"),
+        ],
+      },
+    ],
+    [t],
+  );
+
+  const channels = useMemo(
+    () => [
+      {
+        title: t("Channels.Listening.Title"),
+        description: t("Channels.Listening.Description"),
+        tags: [
+          t("Channels.Listening.Tags.Tag1"),
+          t("Channels.Listening.Tags.Tag2"),
+          t("Channels.Listening.Tags.Tag3"),
+        ],
+      },
+      {
+        title: t("Channels.Parents.Title"),
+        description: t("Channels.Parents.Description"),
+        tags: [
+          t("Channels.Parents.Tags.Tag1"),
+          t("Channels.Parents.Tags.Tag2"),
+          t("Channels.Parents.Tags.Tag3"),
+        ],
+      },
+      {
+        title: t("Channels.Partnerships.Title"),
+        description: t("Channels.Partnerships.Description"),
+        tags: [
+          t("Channels.Partnerships.Tags.Tag1"),
+          t("Channels.Partnerships.Tags.Tag2"),
+          t("Channels.Partnerships.Tags.Tag3"),
+        ],
+      },
+      {
+        title: t("Channels.Technical.Title"),
+        description: t("Channels.Technical.Description"),
+        tags: [
+          t("Channels.Technical.Tags.Tag1"),
+          t("Channels.Technical.Tags.Tag2"),
+          t("Channels.Technical.Tags.Tag3"),
+        ],
+      },
+    ],
+    [t],
+  );
+
+  const pledges = useMemo(
+    () => [
+      t("Commitments.Pledge1"),
+      t("Commitments.Pledge2"),
+      t("Commitments.Pledge3"),
+    ],
+    [t],
+  );
+
+  const faqItems = useMemo(
+    () => [
+      { question: t("FAQ.Item1.Question"), answer: t("FAQ.Item1.Answer") },
+      { question: t("FAQ.Item2.Question"), answer: t("FAQ.Item2.Answer") },
+      { question: t("FAQ.Item3.Question"), answer: t("FAQ.Item3.Answer") },
+    ],
+    [t],
+  );
+
+  const subjectOptions = useMemo(
+    () => [
+      { value: "general", label: t("Form.SubjectOptions.General") },
+      {
+        value: "student_support",
+        label: t("Form.SubjectOptions.StudentSupport"),
+      },
+      {
+        value: "parent_question",
+        label: t("Form.SubjectOptions.ParentQuestion"),
+      },
+      {
+        value: "teacher_collaboration",
+        label: t("Form.SubjectOptions.TeacherCollaboration"),
+      },
+      { value: "partnership", label: t("Form.SubjectOptions.Partnership") },
+      { value: "event", label: t("Form.SubjectOptions.Event") },
+      { value: "technical", label: t("Form.SubjectOptions.Technical") },
+      { value: "other", label: t("Form.SubjectOptions.Other") },
+    ],
+    [t],
+  );
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -113,7 +173,9 @@ export default function ContactPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -130,35 +192,45 @@ export default function ContactPage() {
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         setStatus("error");
-        setErrorMessage(result.error || "Une erreur est survenue");
+        setErrorMessage(result.error || t("Form.Errors.Generic"));
       }
     } catch (error) {
       setStatus("error");
-      setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+      setErrorMessage(t("Form.Errors.Generic"));
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-[#f8fafc]" dir={direction}>
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] text-white">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,#38bdf8,transparent_30%),radial-gradient(circle_at_80%_10%,#3b82f6,transparent_30%)]" />
         <div className="relative max-w-6xl mx-auto px-6 py-20 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur">
                 <Sparkles className="w-4 h-4 text-[#bae6fd]" />
-                <span className="text-sm font-medium">Wake Up & Spark · Espace sûr</span>
+                <span className="text-sm font-medium">{t("Hero.Badge")}</span>
               </div>
               <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-tight">
-                Parlons de ce qui compte <span className="text-[#fbbf24]">pour vous</span>
+                {t("Hero.Title")}{" "}
+                <span className="text-[#fbbf24]">{t("Hero.Highlight")}</span>
               </h1>
               <p className="mt-4 text-lg text-slate-200 max-w-2xl">
-                Élèves, parents et enseignants : partagez vos questions, vos besoins ou vos idées. Notre équipe répond avec bienveillance et confidentialité pour soutenir l’intelligence émotionnelle de chacun.
+                {t("Hero.Description")}
               </p>
               <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-200">
-                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/15">Réponse sous 48h</span>
-                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/15">Anonymat possible</span>
-                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/15">Communauté bienveillante</span>
+                {pills.map((pill, idx) => (
+                  <span
+                    key={`${pill}-${idx}`}
+                    className="px-3 py-2 rounded-full bg-white/10 border border-white/15"
+                  >
+                    {pill}
+                  </span>
+                ))}
               </div>
             </motion.div>
 
@@ -168,21 +240,30 @@ export default function ContactPage() {
               transition={{ duration: 0.7 }}
               className="bg-white/10 border border-white/20 rounded-2xl p-6 backdrop-blur-lg shadow-xl"
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div
+                className={`flex items-center gap-3 mb-4 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+              >
                 <HeartHandshake className="w-10 h-10 text-[#bae6fd]" />
                 <div>
-                  <p className="text-sm text-slate-200">Nous sommes là pour vous</p>
-                  <p className="text-lg font-semibold text-white">Une équipe à l’écoute</p>
+                  <p className="text-sm text-slate-200">
+                    {t("Hero.InfoCard.Overline")}
+                  </p>
+                  <p className="text-lg font-semibold text-white">
+                    {t("Hero.InfoCard.Title")}
+                  </p>
                 </div>
               </div>
               <div className="grid gap-4">
                 {contactInfo.map((item, idx) => (
-                  <div key={idx} className="flex gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
+                  <div
+                    key={idx}
+                    className={`flex gap-3 p-4 rounded-xl bg-white/5 border border-white/10 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                  >
                     <item.icon className="w-5 h-5 text-[#bae6fd] mt-1" />
                     <div>
                       <p className="text-sm text-slate-200">{item.title}</p>
                       {item.details.map((d, i) => (
-                        <p key={i} className="text-white font-medium">
+                        <p key={`${d}-${i}`} className="text-white font-medium">
                           {d}
                         </p>
                       ))}
@@ -208,13 +289,22 @@ export default function ContactPage() {
               <motion.div
                 key={channel.title}
                 variants={fadeInUp}
-                className="p-6 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] hover:-translate-y-1 hover:shadow-lg transition-all"
+                className={`p-6 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] hover:-translate-y-1 hover:shadow-lg transition-all ${isRTL ? "text-right" : ""}`}
               >
-                <h3 className="text-lg font-semibold text-[#0f172a]">{channel.title}</h3>
-                <p className="mt-2 text-sm text-[#475569]">{channel.description}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <h3 className="text-lg font-semibold text-[#0f172a]">
+                  {channel.title}
+                </h3>
+                <p className="mt-2 text-sm text-[#475569]">
+                  {channel.description}
+                </p>
+                <div
+                  className={`mt-3 flex flex-wrap gap-2 ${isRTL ? "justify-end" : ""}`}
+                >
                   {channel.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 text-xs font-semibold rounded-full bg-[#e0f2fe] text-[#0ea5e9]">
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-xs font-semibold rounded-full bg-[#e0f2fe] text-[#0ea5e9]"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -228,36 +318,66 @@ export default function ContactPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
-            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0, x: isRTL ? 24 : -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
+                <div
+                  className={`flex items-center gap-3 mb-3 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                >
                   <Users className="w-5 h-5 text-[#2563eb]" />
-                  <p className="text-sm font-semibold text-[#0f172a]">Formulaire de contact</p>
+                  <p className="text-sm font-semibold text-[#0f172a]">
+                    {t("Form.Overline")}
+                  </p>
                 </div>
-                <h2 className="text-2xl font-bold text-[#0f172a]">Écrivons ensemble</h2>
-                <p className="text-[#475569] mb-6">
-                  Dites-nous comment nous pouvons vous aider. Précisez si votre message doit rester confidentiel.
+                <h2
+                  className={`text-2xl font-bold text-[#0f172a] ${isRTL ? "text-right" : ""}`}
+                >
+                  {t("Form.Title")}
+                </h2>
+                <p
+                  className={`text-[#475569] mb-6 ${isRTL ? "text-right" : ""}`}
+                >
+                  {t("Form.Description")}
                 </p>
 
                 {status === "success" && (
-                  <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="mb-5 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className={`mb-5 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                  >
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
-                    <p className="text-sm text-green-800">Votre message a bien été envoyé. Nous revenons vers vous très vite.</p>
+                    <p className="text-sm text-green-800">
+                      {t("Form.StatusSuccess")}
+                    </p>
                   </motion.div>
                 )}
 
                 {status === "error" && (
-                  <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className={`mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                  >
                     <AlertCircle className="w-5 h-5 text-red-600 mt-0.5" />
-                    <p className="text-sm text-red-800">{errorMessage}</p>
+                    <p className="text-sm text-red-800">
+                      {errorMessage || t("Form.Errors.Generic")}
+                    </p>
                   </motion.div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <div>
-                      <label className="block text-sm font-semibold text-[#0f172a] mb-2" htmlFor="name">
-                        Nom complet *
+                    <div className={isRTL ? "text-right" : ""}>
+                      <label
+                        className="block text-sm font-semibold text-[#0f172a] mb-2"
+                        htmlFor="name"
+                      >
+                        {t("Form.NameLabel")}
                       </label>
                       <input
                         id="name"
@@ -266,12 +386,15 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
-                        placeholder="Votre nom"
+                        placeholder={t("Form.NamePlaceholder")}
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-[#0f172a] mb-2" htmlFor="email">
-                        Email *
+                    <div className={isRTL ? "text-right" : ""}>
+                      <label
+                        className="block text-sm font-semibold text-[#0f172a] mb-2"
+                        htmlFor="email"
+                      >
+                        {t("Form.EmailLabel")}
                       </label>
                       <input
                         id="email"
@@ -281,14 +404,17 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
-                        placeholder="vous@example.com"
+                        placeholder={t("Form.EmailPlaceholder")}
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-[#0f172a] mb-2" htmlFor="subject">
-                      Sujet *
+                  <div className={isRTL ? "text-right" : ""}>
+                    <label
+                      className="block text-sm font-semibold text-[#0f172a] mb-2"
+                      htmlFor="subject"
+                    >
+                      {t("Form.SubjectLabel")}
                     </label>
                     <select
                       id="subject"
@@ -298,21 +424,21 @@ export default function ContactPage() {
                       required
                       className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
                     >
-                      <option value="">Choisissez le motif</option>
-                      <option value="general">Question générale</option>
-                      <option value="student_support">Soutien étudiant</option>
-                      <option value="parent_question">Question parent</option>
-                      <option value="teacher_collaboration">Collaboration enseignant</option>
-                      <option value="partnership">Partenariat / sponsor</option>
-                      <option value="event">Événement / atelier</option>
-                      <option value="technical">Problème technique</option>
-                      <option value="other">Autre</option>
+                      <option value="">{t("Form.SubjectPlaceholder")}</option>
+                      {subjectOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-[#0f172a] mb-2" htmlFor="message">
-                      Message *
+                  <div className={isRTL ? "text-right" : ""}>
+                    <label
+                      className="block text-sm font-semibold text-[#0f172a] mb-2"
+                      htmlFor="message"
+                    >
+                      {t("Form.MessageLabel")}
                     </label>
                     <textarea
                       id="message"
@@ -322,7 +448,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition resize-none"
-                      placeholder="Expliquez votre besoin. Précisez si vous souhaitez rester anonyme."
+                      placeholder={t("Form.MessagePlaceholder")}
                     />
                   </div>
 
@@ -334,12 +460,12 @@ export default function ContactPage() {
                     {status === "loading" ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin" />
-                        Envoi en cours...
+                        {t("Form.ButtonSending")}
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5" />
-                        Envoyer le message
+                        {t("Form.ButtonSend")}
                       </>
                     )}
                   </button>
@@ -347,15 +473,30 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="space-y-6">
-              <div className="p-6 rounded-3xl bg-[#0f172a] text-white shadow-lg">
-                <div className="flex items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, x: isRTL ? -24 : 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="space-y-6"
+            >
+              <div
+                className={`p-6 rounded-3xl bg-[#0f172a] text-white shadow-lg ${isRTL ? "text-right" : ""}`}
+              >
+                <div
+                  className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}
+                >
                   <ShieldCheck className="w-5 h-5 text-[#38bdf8]" />
-                  <p className="text-sm font-semibold">Nos engagements</p>
+                  <p className="text-sm font-semibold">
+                    {t("Commitments.Title")}
+                  </p>
                 </div>
                 <ul className="mt-4 space-y-3 text-sm text-slate-200">
                   {pledges.map((p) => (
-                    <li key={p} className="flex items-start gap-2">
+                    <li
+                      key={p}
+                      className={`flex items-start gap-2 ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                    >
                       <span className="mt-1 h-2 w-2 rounded-full bg-[#38bdf8]" />
                       <span>{p}</span>
                     </li>
@@ -363,13 +504,15 @@ export default function ContactPage() {
                 </ul>
               </div>
 
-              <div className="p-6 rounded-3xl border border-[#e2e8f0] bg-white">
+              <div
+                className={`p-6 rounded-3xl border border-[#e2e8f0] bg-white ${isRTL ? "text-right" : ""}`}
+              >
                 <p className="text-sm font-semibold text-[#0f172a] flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#2563eb]" />
-                  Pourquoi nous écrire ?
+                  {t("WhyWrite.Title")}
                 </p>
                 <p className="mt-3 text-sm text-[#475569]">
-                  Pour une idée de post, une situation émotionnelle, un besoin d’accompagnement ou une question sur les activités du club.
+                  {t("WhyWrite.Description")}
                 </p>
               </div>
             </motion.div>
@@ -384,15 +527,15 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-10"
+            className={`text-center mb-10 ${isRTL ? "text-right" : ""}`}
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e0f2fe] text-[#0ea5e9] text-sm font-semibold">
-              FAQ
+              {t("FAQ.Badge")}
             </span>
-            <h2 className="mt-4 text-3xl font-bold text-[#0f172a]">Questions fréquentes</h2>
-            <p className="mt-2 text-[#475569]">
-              Les réponses rapides pour continuer à grandir ensemble.
-            </p>
+            <h2 className="mt-4 text-3xl font-bold text-[#0f172a]">
+              {t("FAQ.Title")}
+            </h2>
+            <p className="mt-2 text-[#475569]">{t("FAQ.Subtitle")}</p>
           </motion.div>
 
           <motion.div
@@ -406,9 +549,11 @@ export default function ContactPage() {
               <motion.div
                 key={item.question}
                 variants={fadeInUp}
-                className="p-5 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc]"
+                className={`p-5 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] ${isRTL ? "text-right" : ""}`}
               >
-                <h3 className="text-lg font-semibold text-[#0f172a]">{item.question}</h3>
+                <h3 className="text-lg font-semibold text-[#0f172a]">
+                  {item.question}
+                </h3>
                 <p className="mt-2 text-sm text-[#475569]">{item.answer}</p>
               </motion.div>
             ))}

@@ -180,5 +180,140 @@
 
   "AuthNavbar": {
     "Home": "Home"
+  },
+
+  "ContactPage": {
+    "Hero": {
+      "Badge": "Wake Up & Spark · Safe space",
+      "Title": "Let's talk about what matters",
+      "Highlight": "to you",
+      "Description": "Students, parents, and teachers: share your questions, your needs, or your ideas. Our team replies with care and confidentiality to support everyone's emotional intelligence.",
+      "Pills": {
+        "Response": "Response within 48h",
+        "Anonymous": "Anonymous option",
+        "Community": "Caring community"
+      },
+      "InfoCard": {
+        "Overline": "We are here for you",
+        "Title": "A team that listens"
+      }
+    },
+    "ContactInfo": {
+      "Rally": {
+        "Title": "Meeting point",
+        "Line1": "Wake Up & Spark",
+        "Line2": "Habib Thameur High School, Tunisia"
+      },
+      "Email": {
+        "Title": "Main email",
+        "Line1": "contact@wakeupandspark.com",
+        "Line2": "Reply within 48h"
+      },
+      "Response": {
+        "Title": "Response time",
+        "Line1": "Up to 48h for general requests",
+        "Line2": "24h for sensitive situations"
+      },
+      "Privacy": {
+        "Title": "Privacy",
+        "Line1": "Sensitive messages stay private",
+        "Line2": "Safe space for students, parents, teachers"
+      }
+    },
+    "Channels": {
+      "Listening": {
+        "Title": "Listening & support",
+        "Description": "Share anonymously or with guidance to handle emotions and difficult situations.",
+        "Tags": {
+          "Tag1": "Care",
+          "Tag2": "Anonymous option",
+          "Tag3": "Human replies"
+        }
+      },
+      "Parents": {
+        "Title": "Parents & teachers",
+        "Description": "Questions about support, club life, or the needs of a class.",
+        "Tags": {
+          "Tag1": "Parents",
+          "Tag2": "Teachers",
+          "Tag3": "Guidance"
+        }
+      },
+      "Partnerships": {
+        "Title": "Partnerships & workshops",
+        "Description": "Want to bring a workshop, testimony, or material support to the club.",
+        "Tags": {
+          "Tag1": "Companies",
+          "Tag2": "Associations",
+          "Tag3": "Guests"
+        }
+      },
+      "Technical": {
+        "Title": "Technical & access",
+        "Description": "Issues with login, posting, or notifications on the platform.",
+        "Tags": {
+          "Tag1": "Support",
+          "Tag2": "Access",
+          "Tag3": "Account"
+        }
+      }
+    },
+    "Form": {
+      "Overline": "Contact form",
+      "Title": "Let's write together",
+      "Description": "Tell us how we can help. Mention if your message should remain confidential.",
+      "NameLabel": "Full name *",
+      "NamePlaceholder": "Your name",
+      "EmailLabel": "Email *",
+      "EmailPlaceholder": "you@example.com",
+      "SubjectLabel": "Subject *",
+      "SubjectPlaceholder": "Choose a topic",
+      "SubjectOptions": {
+        "General": "General question",
+        "StudentSupport": "Student support",
+        "ParentQuestion": "Parent question",
+        "TeacherCollaboration": "Teacher collaboration",
+        "Partnership": "Partnership / sponsor",
+        "Event": "Event / workshop",
+        "Technical": "Technical issue",
+        "Other": "Other"
+      },
+      "MessageLabel": "Message *",
+      "MessagePlaceholder": "Explain your need. Mention if you prefer to stay anonymous.",
+      "ButtonSend": "Send message",
+      "ButtonSending": "Sending...",
+      "StatusSuccess": "Your message was sent. We will get back to you soon.",
+      "StatusError": "Something went wrong. Please try again.",
+      "Errors": {
+        "Generic": "Something went wrong. Please try again."
+      }
+    },
+    "Commitments": {
+      "Title": "Our commitments",
+      "Pledge1": "Reply within 48h (24h if sensitive)",
+      "Pledge2": "Confidentiality and respect",
+      "Pledge3": "Guides and emotional resources"
+    },
+    "WhyWrite": {
+      "Title": "Why write to us?",
+      "Description": "For a post idea, an emotional situation, a need for support, or a question about club activities."
+    },
+    "FAQ": {
+      "Badge": "FAQ",
+      "Title": "Frequently asked questions",
+      "Subtitle": "Quick answers to keep growing together.",
+      "Item1": {
+        "Question": "Can I write anonymously?",
+        "Answer": "Yes. Mention it in your message; we will handle your request without revealing your identity to other members."
+      },
+      "Item2": {
+        "Question": "Who reads sensitive messages?",
+        "Answer": "Only the Wake Up & Spark lead team, committed to confidentiality and care."
+      },
+      "Item3": {
+        "Question": "How can I propose a workshop or partnership?",
+        "Answer": "Choose “Partnership / sponsor” or “Event / workshop” in the subject, describe your idea, and share your availability."
+      }
+    }
   }
 }
