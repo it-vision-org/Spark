@@ -180,5 +180,140 @@
 
   "AuthNavbar": {
     "Home": "Accueil"
+  },
+
+  "ContactPage": {
+    "Hero": {
+      "Badge": "Wake Up & Spark · Espace sûr",
+      "Title": "Parlons de ce qui compte",
+      "Highlight": "pour vous",
+      "Description": "Élèves, parents et enseignants : partagez vos questions, vos besoins ou vos idées. Notre équipe répond avec bienveillance et confidentialité pour soutenir l’intelligence émotionnelle de chacun.",
+      "Pills": {
+        "Response": "Réponse sous 48h",
+        "Anonymous": "Anonymat possible",
+        "Community": "Communauté bienveillante"
+      },
+      "InfoCard": {
+        "Overline": "Nous sommes là pour vous",
+        "Title": "Une équipe à l’écoute"
+      }
+    },
+    "ContactInfo": {
+      "Rally": {
+        "Title": "Point de ralliement",
+        "Line1": "Wake Up & Spark",
+        "Line2": "Lycée Habib Thameur, Tunisie"
+      },
+      "Email": {
+        "Title": "Email principal",
+        "Line1": "contact@wakeupandspark.com",
+        "Line2": "Réponse sous 48h"
+      },
+      "Response": {
+        "Title": "Délai de réponse",
+        "Line1": "48h max pour les demandes générales",
+        "Line2": "24h pour les situations sensibles"
+      },
+      "Privacy": {
+        "Title": "Confidentialité",
+        "Line1": "Les messages sensibles restent privés",
+        "Line2": "Espace sûr pour élèves, parents, enseignants"
+      }
+    },
+    "Channels": {
+      "Listening": {
+        "Title": "Écoute et soutien",
+        "Description": "Partage anonyme ou accompagné pour gérer les émotions et les situations difficiles.",
+        "Tags": {
+          "Tag1": "Bienveillance",
+          "Tag2": "Anonymat possible",
+          "Tag3": "Réponses humaines"
+        }
+      },
+      "Parents": {
+        "Title": "Parents & enseignants",
+        "Description": "Questions sur l’accompagnement, la vie du club ou les besoins d’une classe.",
+        "Tags": {
+          "Tag1": "Parents",
+          "Tag2": "Enseignants",
+          "Tag3": "Orientation"
+        }
+      },
+      "Partnerships": {
+        "Title": "Partenariats & ateliers",
+        "Description": "Envie d’apporter un atelier, un témoignage ou un soutien matériel au club.",
+        "Tags": {
+          "Tag1": "Entreprises",
+          "Tag2": "Associations",
+          "Tag3": "Invités"
+        }
+      },
+      "Technical": {
+        "Title": "Technique & accès",
+        "Description": "Problèmes de connexion, de publication ou de notification sur la plateforme.",
+        "Tags": {
+          "Tag1": "Support",
+          "Tag2": "Accès",
+          "Tag3": "Compte"
+        }
+      }
+    },
+    "Form": {
+      "Overline": "Formulaire de contact",
+      "Title": "Écrivons ensemble",
+      "Description": "Dites-nous comment nous pouvons vous aider. Précisez si votre message doit rester confidentiel.",
+      "NameLabel": "Nom complet *",
+      "NamePlaceholder": "Votre nom",
+      "EmailLabel": "Email *",
+      "EmailPlaceholder": "vous@example.com",
+      "SubjectLabel": "Sujet *",
+      "SubjectPlaceholder": "Choisissez le motif",
+      "SubjectOptions": {
+        "General": "Question générale",
+        "StudentSupport": "Soutien étudiant",
+        "ParentQuestion": "Question parent",
+        "TeacherCollaboration": "Collaboration enseignant",
+        "Partnership": "Partenariat / sponsor",
+        "Event": "Événement / atelier",
+        "Technical": "Problème technique",
+        "Other": "Autre"
+      },
+      "MessageLabel": "Message *",
+      "MessagePlaceholder": "Expliquez votre besoin. Précisez si vous souhaitez rester anonyme.",
+      "ButtonSend": "Envoyer le message",
+      "ButtonSending": "Envoi en cours...",
+      "StatusSuccess": "Votre message a bien été envoyé. Nous revenons vers vous très vite.",
+      "StatusError": "Une erreur est survenue. Veuillez réessayer.",
+      "Errors": {
+        "Generic": "Une erreur est survenue. Veuillez réessayer."
+      }
+    },
+    "Commitments": {
+      "Title": "Nos engagements",
+      "Pledge1": "Réponse en 48h (24h si sensible)",
+      "Pledge2": "Confidentialité et respect",
+      "Pledge3": "Guides et ressources émotionnelles"
+    },
+    "WhyWrite": {
+      "Title": "Pourquoi nous écrire ?",
+      "Description": "Pour une idée de post, une situation émotionnelle, un besoin d’accompagnement ou une question sur les activités du club."
+    },
+    "FAQ": {
+      "Badge": "FAQ",
+      "Title": "Questions fréquentes",
+      "Subtitle": "Les réponses rapides pour continuer à grandir ensemble.",
+      "Item1": {
+        "Question": "Puis-je écrire anonymement ?",
+        "Answer": "Oui. Mentionnez-le dans votre message ; nous traiterons votre demande sans révéler votre identité aux autres membres."
+      },
+      "Item2": {
+        "Question": "Qui lit les messages sensibles ?",
+        "Answer": "Seule l’équipe encadrante Wake Up & Spark, engagée sur la confidentialité et la bienveillance."
+      },
+      "Item3": {
+        "Question": "Comment proposer un atelier ou un partenariat ?",
+        "Answer": "Choisissez “Partenariat / sponsor” ou “Événement / atelier” dans le sujet, décrivez votre idée et vos disponibilités."
+      }
+    }
   }
 }
