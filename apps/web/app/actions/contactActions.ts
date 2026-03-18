@@ -11,6 +11,24 @@ interface ContactFormData {
   message: string;
 }
 
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  subject: string | null;
+  message: string;
+  isRead: boolean;
+  createdAt: Date;
+  userId: string | null;
+  user: {
+    name: string | null;
+    email: string;
+    profileImage: string | null;
+    userType: string | null;
+    role: string;
+  } | null;
+}
+
 const CONTACT_RECIPIENT =
   process.env.CONTACT_RECIPIENT || "ahmedzouaghi2003@gmail.com";
 
@@ -61,5 +79,77 @@ export async function sendContactEmail(data: ContactFormData) {
   } catch (error) {
     console.error("[CONTACT] Error in sendContactEmail:", error);
     return { success: false, error: "Une erreur est survenue" };
+  }
+}
+
+export async function getContactSubmissions(): Promise<{
+  success: boolean;
+  contacts?: ContactSubmission[];
+  error?: string;
+}> {
+  try {
+    const contacts = await db.contactSubmission.findMany({
+      orderBy: { createdAt: "desc" },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            profileImage: true,
+            userType: true,
+            role: true,
+          },
+        },
+      },
+    });
+
+    return { success: true, contacts: contacts as ContactSubmission[] };
+  } catch (error) {
+    console.error("[CONTACT] Error fetching contacts:", error);
+    return { success: false, error: "Failed to fetch contacts" };
+  }
+}
+
+export async function markContactAsRead(
+  id: string,
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await db.contactSubmission.update({
+      where: { id },
+      data: { isRead: true },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("[CONTACT] Error marking contact as read:", error);
+    return { success: false, error: "Failed to update contact" };
+  }
+}
+
+export async function markContactAsUnread(
+  id: string,
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await db.contactSubmission.update({
+      where: { id },
+      data: { isRead: false },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("[CONTACT] Error marking contact as unread:", error);
+    return { success: false, error: "Failed to update contact" };
+  }
+}
+
+export async function deleteContactSubmission(
+  id: string,
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await db.contactSubmission.delete({
+      where: { id },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("[CONTACT] Error deleting contact:", error);
+    return { success: false, error: "Failed to delete contact" };
   }
 }
