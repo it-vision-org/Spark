@@ -15,6 +15,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import Card from "@/components/ui/Card";
 import Label from "@/components/ui/Label";
 import TextInput from "@/components/ui/TextInput";
 import TextareaInput from "@/components/ui/TextareaInput";
@@ -238,7 +239,7 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            <motion.div
+            <Card
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
@@ -275,7 +276,7 @@ export default function ContactPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </Card>
           </div>
         </div>
       </section>
@@ -290,7 +291,7 @@ export default function ContactPage() {
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
             {channels.map((channel) => (
-              <motion.div
+              <Card
                 key={channel.title}
                 variants={fadeInUp}
                 className={`p-6 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] hover:-translate-y-1 hover:shadow-lg transition-all ${isRTL ? "text-right" : ""}`}
@@ -313,7 +314,7 @@ export default function ContactPage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </Card>
             ))}
           </motion.div>
         </div>
@@ -465,7 +466,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              <div
+              <Card
                 className={`p-6 rounded-3xl bg-[#0f172a] text-white shadow-lg ${isRTL ? "text-right" : ""}`}
               >
                 <div
@@ -487,9 +488,9 @@ export default function ContactPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
 
-              <div
+              <Card
                 className={`p-6 rounded-3xl border border-[#e2e8f0] bg-white ${isRTL ? "text-right" : ""}`}
               >
                 <p className="text-sm font-semibold text-[#0f172a] flex items-center gap-2">
@@ -499,7 +500,7 @@ export default function ContactPage() {
                 <p className="mt-3 text-sm text-[#475569]">
                   {t("WhyWrite.Description")}
                 </p>
-              </div>
+              </Card>
             </motion.div>
           </div>
         </div>
@@ -531,7 +532,7 @@ export default function ContactPage() {
             className="space-y-4"
           >
             {faqItems.map((item) => (
-              <motion.div
+              <Card
                 key={item.question}
                 variants={fadeInUp}
                 className={`p-5 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] ${isRTL ? "text-right" : ""}`}
@@ -540,7 +541,7 @@ export default function ContactPage() {
                   {item.question}
                 </h3>
                 <p className="mt-2 text-sm text-[#475569]">{item.answer}</p>
-              </motion.div>
+              </Card>
             ))}
           </motion.div>
         </div>
