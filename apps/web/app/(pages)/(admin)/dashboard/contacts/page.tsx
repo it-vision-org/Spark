@@ -8,6 +8,7 @@ import {
   deleteContactSubmission,
   type ContactSubmission,
 } from "@/actions/contactActions";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 import { toast } from "react-hot-toast";
 
 type FilterType = "all" | "unread" | "read";
@@ -155,15 +156,22 @@ export default function AdminContactsPage() {
   };
 
   const getSubjectColor = (subject: string | null) => {
-    if (!subject) return { bg: "var(--color-neutral-100)", text: "var(--color-neutral-600)" };
+    if (!subject)
+      return {
+        bg: "var(--color-neutral-100)",
+        text: "var(--color-neutral-600)",
+      };
     const s = subject.toLowerCase();
     if (s.includes("technique") || s.includes("technical"))
       return { bg: "#fef2f2", text: "#dc2626" };
     if (s.includes("étudiant") || s.includes("student"))
       return { bg: "#eff6ff", text: "var(--color-primary-600)" };
-    if (s.includes("parent"))
-      return { bg: "#f0fdf4", text: "#16a34a" };
-    if (s.includes("enseignant") || s.includes("teacher") || s.includes("collaboration"))
+    if (s.includes("parent")) return { bg: "#f0fdf4", text: "#16a34a" };
+    if (
+      s.includes("enseignant") ||
+      s.includes("teacher") ||
+      s.includes("collaboration")
+    )
       return { bg: "#fdf4ff", text: "#9333ea" };
     if (s.includes("partenariat") || s.includes("partnership"))
       return { bg: "#fefce8", text: "#ca8a04" };
@@ -175,7 +183,11 @@ export default function AdminContactsPage() {
   const getUserTypeBadge = (userType: string | null) => {
     switch (userType) {
       case "STUDENT":
-        return { label: "🎓 Student", bg: "#eff6ff", text: "var(--color-primary-600)" };
+        return {
+          label: "🎓 Student",
+          bg: "#eff6ff",
+          text: "var(--color-primary-600)",
+        };
       case "TEACHER":
         return { label: "📚 Teacher", bg: "#f0fdf4", text: "#16a34a" };
       case "PARENT":
@@ -198,22 +210,40 @@ export default function AdminContactsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--color-neutral-50)" }}>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "var(--color-neutral-50)" }}
+      >
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin" style={{ borderColor: "var(--color-primary-200)", borderTopColor: "transparent" }} />
-          <p className="text-sm font-medium" style={{ color: "var(--color-neutral-500)" }}>Loading contacts...</p>
+          <div
+            className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin"
+            style={{
+              borderColor: "var(--color-primary-200)",
+              borderTopColor: "transparent",
+            }}
+          />
+          <p
+            className="text-sm font-medium"
+            style={{ color: "var(--color-neutral-500)" }}
+          >
+            Loading contacts...
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--color-neutral-50)" }}>
+    <div
+      className="min-h-screen"
+      style={{ background: "var(--color-neutral-50)" }}
+    >
       {/* ═══ Header ═══ */}
       <div
         className="border-b"
         style={{
-          background: "linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-600) 50%, var(--color-accent-500) 100%)",
+          background:
+            "linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-600) 50%, var(--color-accent-500) 100%)",
           borderColor: "var(--color-primary-700)",
         }}
       >
@@ -221,15 +251,30 @@ export default function AdminContactsPage() {
           <div className="flex items-center gap-4 mb-6">
             <div
               className="w-12 h-12 rounded-2xl flex items-center justify-center"
-              style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(10px)" }}
+              style={{
+                background: "rgba(255,255,255,0.2)",
+                backdropFilter: "blur(10px)",
+              }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white" style={{ fontFamily: "Playfair Display, serif" }}>
+              <h1
+                className="text-2xl font-bold text-white"
+                style={{ fontFamily: "Playfair Display, serif" }}
+              >
                 Contact Submissions
               </h1>
               <p className="text-sm text-white/80 mt-0.5">
@@ -241,29 +286,71 @@ export default function AdminContactsPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: "Total", value: stats.total, icon: (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              )},
-              { label: "Unread", value: stats.unread, icon: (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-              )},
-              { label: "Read", value: stats.read, icon: (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              )},
+              {
+                label: "Total",
+                value: stats.total,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Unread",
+                value: stats.unread,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Read",
+                value: stats.read,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                ),
+              },
             ].map((stat) => (
               <div
                 key={stat.label}
                 className="rounded-xl px-4 py-3 flex items-center gap-3"
-                style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(10px)" }}
+                style={{
+                  background: "rgba(255,255,255,0.15)",
+                  backdropFilter: "blur(10px)",
+                }}
               >
                 <div className="text-white/80">{stat.icon}</div>
                 <div>
@@ -280,14 +367,24 @@ export default function AdminContactsPage() {
       <div className="max-w-[1600px] mx-auto px-6 py-4">
         <div
           className="flex flex-wrap items-center gap-3 p-4 rounded-2xl border"
-          style={{ background: "white", borderColor: "var(--color-neutral-200)" }}
+          style={{
+            background: "white",
+            borderColor: "var(--color-neutral-200)",
+          }}
         >
           {/* Search */}
           <div className="relative flex-1 min-w-[240px]">
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
               style={{ color: "var(--color-neutral-400)" }}
-              width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -315,14 +412,18 @@ export default function AdminContactsPage() {
           </div>
 
           {/* Filter Buttons */}
-          <div className="flex items-center rounded-xl overflow-hidden border" style={{ borderColor: "var(--color-neutral-200)" }}>
+          <div
+            className="flex items-center rounded-xl overflow-hidden border"
+            style={{ borderColor: "var(--color-neutral-200)" }}
+          >
             {(["all", "unread", "read"] as FilterType[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className="px-4 py-2.5 text-sm font-medium transition-all duration-200 capitalize"
                 style={{
-                  background: filter === f ? "var(--color-primary-600)" : "white",
+                  background:
+                    filter === f ? "var(--color-primary-600)" : "white",
                   color: filter === f ? "white" : "var(--color-neutral-600)",
                 }}
               >
@@ -331,8 +432,12 @@ export default function AdminContactsPage() {
                   <span
                     className="ml-1.5 px-1.5 py-0.5 rounded-full text-xs font-bold"
                     style={{
-                      background: filter === f ? "rgba(255,255,255,0.25)" : "var(--color-primary-100)",
-                      color: filter === f ? "white" : "var(--color-primary-700)",
+                      background:
+                        filter === f
+                          ? "rgba(255,255,255,0.25)"
+                          : "var(--color-primary-100)",
+                      color:
+                        filter === f ? "white" : "var(--color-primary-700)",
                     }}
                   >
                     {stats.unread}
@@ -368,7 +473,16 @@ export default function AdminContactsPage() {
             }}
             title="Refresh"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polyline points="23 4 23 10 17 10" />
               <polyline points="1 20 1 14 7 14" />
               <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
@@ -382,24 +496,40 @@ export default function AdminContactsPage() {
         {filteredContacts.length === 0 ? (
           <div
             className="flex flex-col items-center justify-center py-20 rounded-2xl border"
-            style={{ background: "white", borderColor: "var(--color-neutral-200)" }}
+            style={{
+              background: "white",
+              borderColor: "var(--color-neutral-200)",
+            }}
           >
             <div
               className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
               style={{ background: "var(--color-primary-50)" }}
             >
               <svg
-                width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 style={{ color: "var(--color-primary-400)" }}
               >
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold mb-1" style={{ color: "var(--color-neutral-800)" }}>
+            <h3
+              className="text-lg font-semibold mb-1"
+              style={{ color: "var(--color-neutral-800)" }}
+            >
               {search ? "No matching contacts" : "No contacts yet"}
             </h3>
-            <p className="text-sm" style={{ color: "var(--color-neutral-500)" }}>
+            <p
+              className="text-sm"
+              style={{ color: "var(--color-neutral-500)" }}
+            >
               {search
                 ? "Try adjusting your search or filters"
                 : "Contact submissions will appear here"}
@@ -410,7 +540,10 @@ export default function AdminContactsPage() {
             {/* ─── Contact List ─── */}
             <div
               className="rounded-2xl border overflow-hidden"
-              style={{ background: "white", borderColor: "var(--color-neutral-200)" }}
+              style={{
+                background: "white",
+                borderColor: "var(--color-neutral-200)",
+              }}
             >
               <div className="max-h-[calc(100vh-320px)] overflow-y-auto">
                 {filteredContacts.map((contact) => {
@@ -429,7 +562,9 @@ export default function AdminContactsPage() {
                           : contact.isRead
                             ? "white"
                             : "var(--color-accent-50)",
-                        borderLeft: isSelected ? "3px solid var(--color-primary-500)" : "3px solid transparent",
+                        borderLeft: isSelected
+                          ? "3px solid var(--color-primary-500)"
+                          : "3px solid transparent",
                       }}
                     >
                       <div className="flex items-start gap-3">
@@ -437,8 +572,12 @@ export default function AdminContactsPage() {
                         <div
                           className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
                           style={{
-                            background: contact.isRead ? "var(--color-neutral-100)" : "var(--color-primary-100)",
-                            color: contact.isRead ? "var(--color-neutral-600)" : "var(--color-primary-700)",
+                            background: contact.isRead
+                              ? "var(--color-neutral-100)"
+                              : "var(--color-primary-100)",
+                            color: contact.isRead
+                              ? "var(--color-neutral-600)"
+                              : "var(--color-primary-700)",
                           }}
                         >
                           {contact.user?.profileImage ? (
@@ -460,7 +599,10 @@ export default function AdminContactsPage() {
                             >
                               {contact.name}
                             </p>
-                            <span className="text-xs flex-shrink-0" style={{ color: "var(--color-neutral-400)" }}>
+                            <span
+                              className="text-xs flex-shrink-0"
+                              style={{ color: "var(--color-neutral-400)" }}
+                            >
                               {formatDate(contact.createdAt)}
                             </span>
                           </div>
@@ -468,7 +610,10 @@ export default function AdminContactsPage() {
                           {contact.subject && (
                             <span
                               className="inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-1"
-                              style={{ background: subjectStyle.bg, color: subjectStyle.text }}
+                              style={{
+                                background: subjectStyle.bg,
+                                color: subjectStyle.text,
+                              }}
                             >
                               {contact.subject}
                             </span>
@@ -482,13 +627,18 @@ export default function AdminContactsPage() {
                           </p>
 
                           <div className="flex items-center gap-2 mt-1.5">
-                            <span className="text-xs" style={{ color: "var(--color-neutral-400)" }}>
+                            <span
+                              className="text-xs"
+                              style={{ color: "var(--color-neutral-400)" }}
+                            >
                               {contact.email}
                             </span>
                             {!contact.isRead && (
                               <span
                                 className="w-2 h-2 rounded-full flex-shrink-0"
-                                style={{ background: "var(--color-primary-500)" }}
+                                style={{
+                                  background: "var(--color-primary-500)",
+                                }}
                               />
                             )}
                           </div>
@@ -503,7 +653,10 @@ export default function AdminContactsPage() {
             {/* ─── Detail Panel ─── */}
             <div
               className="rounded-2xl border overflow-hidden"
-              style={{ background: "white", borderColor: "var(--color-neutral-200)" }}
+              style={{
+                background: "white",
+                borderColor: "var(--color-neutral-200)",
+              }}
             >
               {selectedContact ? (
                 <div className="h-full flex flex-col">
@@ -546,18 +699,24 @@ export default function AdminContactsPage() {
                             {selectedContact.email}
                           </a>
                           <div className="flex items-center gap-2 mt-1">
-                            {selectedContact.user && (() => {
-                              const badge = getUserTypeBadge(selectedContact.user.userType);
-                              if (!badge) return null;
-                              return (
-                                <span
-                                  className="text-xs font-semibold px-2 py-0.5 rounded-full"
-                                  style={{ background: badge.bg, color: badge.text }}
-                                >
-                                  {badge.label}
-                                </span>
-                              );
-                            })()}
+                            {selectedContact.user &&
+                              (() => {
+                                const badge = getUserTypeBadge(
+                                  selectedContact.user.userType,
+                                );
+                                if (!badge) return null;
+                                return (
+                                  <span
+                                    className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                                    style={{
+                                      background: badge.bg,
+                                      color: badge.text,
+                                    }}
+                                  >
+                                    {badge.label}
+                                  </span>
+                                );
+                              })()}
                             {selectedContact.user && (
                               <span
                                 className="text-xs font-medium px-2 py-0.5 rounded-full"
@@ -591,18 +750,42 @@ export default function AdminContactsPage() {
                           className="p-2 rounded-xl transition-all duration-200 hover:scale-105"
                           style={{
                             border: "1.5px solid var(--color-neutral-200)",
-                            color: selectedContact.isRead ? "var(--color-neutral-500)" : "var(--color-primary-600)",
+                            color: selectedContact.isRead
+                              ? "var(--color-neutral-500)"
+                              : "var(--color-primary-600)",
                             background: "white",
                           }}
-                          title={selectedContact.isRead ? "Mark as unread" : "Mark as read"}
+                          title={
+                            selectedContact.isRead
+                              ? "Mark as unread"
+                              : "Mark as read"
+                          }
                         >
                           {selectedContact.isRead ? (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                               <polyline points="22,6 12,13 2,6" />
                             </svg>
                           ) : (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <polyline points="20 6 9 17 4 12" />
                             </svg>
                           )}
@@ -618,7 +801,16 @@ export default function AdminContactsPage() {
                           }}
                           title="Reply via email"
                         >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <polyline points="9 17 4 12 9 7" />
                             <path d="M20 18v-2a4 4 0 0 0-4-4H4" />
                           </svg>
@@ -632,7 +824,9 @@ export default function AdminContactsPage() {
                               className="px-3 py-2 rounded-xl text-xs font-semibold text-white transition-all duration-200 hover:scale-105 disabled:opacity-50"
                               style={{ background: "#dc2626" }}
                             >
-                              {deletingId === selectedContact.id ? "..." : "Confirm"}
+                              {deletingId === selectedContact.id
+                                ? "..."
+                                : "Confirm"}
                             </button>
                             <button
                               onClick={() => setShowDeleteConfirm(null)}
@@ -642,7 +836,16 @@ export default function AdminContactsPage() {
                                 color: "var(--color-neutral-500)",
                               }}
                             >
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
                                 <line x1="18" y1="6" x2="6" y2="18" />
                                 <line x1="6" y1="6" x2="18" y2="18" />
                               </svg>
@@ -650,7 +853,9 @@ export default function AdminContactsPage() {
                           </div>
                         ) : (
                           <button
-                            onClick={() => setShowDeleteConfirm(selectedContact.id)}
+                            onClick={() =>
+                              setShowDeleteConfirm(selectedContact.id)
+                            }
                             className="p-2 rounded-xl transition-all duration-200 hover:scale-105"
                             style={{
                               border: "1.5px solid #fecaca",
@@ -659,7 +864,16 @@ export default function AdminContactsPage() {
                             }}
                             title="Delete"
                           >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <polyline points="3 6 5 6 21 6" />
                               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                               <line x1="10" y1="11" x2="10" y2="17" />
@@ -675,21 +889,36 @@ export default function AdminContactsPage() {
                   <div className="flex-1 overflow-y-auto px-6 py-6">
                     {/* Meta Row */}
                     <div className="flex flex-wrap items-center gap-3 mb-6">
-                      {selectedContact.subject && (() => {
-                        const style = getSubjectColor(selectedContact.subject);
-                        return (
-                          <span
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1 rounded-full"
-                            style={{ background: style.bg, color: style.text }}
-                          >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                              <line x1="7" y1="7" x2="7.01" y2="7" />
-                            </svg>
-                            {selectedContact.subject}
-                          </span>
-                        );
-                      })()}
+                      {selectedContact.subject &&
+                        (() => {
+                          const style = getSubjectColor(
+                            selectedContact.subject,
+                          );
+                          return (
+                            <span
+                              className="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1 rounded-full"
+                              style={{
+                                background: style.bg,
+                                color: style.text,
+                              }}
+                            >
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                                <line x1="7" y1="7" x2="7.01" y2="7" />
+                              </svg>
+                              {selectedContact.subject}
+                            </span>
+                          );
+                        })()}
 
                       <span
                         className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full"
@@ -698,7 +927,16 @@ export default function AdminContactsPage() {
                           color: "var(--color-neutral-600)",
                         }}
                       >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
                           <circle cx="12" cy="12" r="10" />
                           <polyline points="12 6 12 12 16 14" />
                         </svg>
@@ -708,20 +946,36 @@ export default function AdminContactsPage() {
                       <span
                         className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full"
                         style={{
-                          background: selectedContact.isRead ? "#f0fdf4" : "var(--color-accent-100)",
-                          color: selectedContact.isRead ? "#16a34a" : "var(--color-primary-700)",
+                          background: selectedContact.isRead
+                            ? "#f0fdf4"
+                            : "var(--color-accent-100)",
+                          color: selectedContact.isRead
+                            ? "#16a34a"
+                            : "var(--color-primary-700)",
                         }}
                       >
                         {selectedContact.isRead ? (
                           <>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <polyline points="20 6 9 17 4 12" />
                             </svg>
                             Read
                           </>
                         ) : (
                           <>
-                            <span className="w-2 h-2 rounded-full" style={{ background: "var(--color-primary-500)" }} />
+                            <span
+                              className="w-2 h-2 rounded-full"
+                              style={{ background: "var(--color-primary-500)" }}
+                            />
                             Unread
                           </>
                         )}
@@ -738,12 +992,22 @@ export default function AdminContactsPage() {
                     >
                       <div className="flex items-center gap-2 mb-4">
                         <svg
-                          width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{ color: "var(--color-neutral-400)" }}
                         >
                           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
-                        <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--color-neutral-400)" }}>
+                        <span
+                          className="text-xs font-semibold uppercase tracking-wider"
+                          style={{ color: "var(--color-neutral-400)" }}
+                        >
                           Message
                         </span>
                       </div>
@@ -757,20 +1021,25 @@ export default function AdminContactsPage() {
 
                     {/* Quick Reply */}
                     <div className="mt-6">
-                      <a
+                      <PrimaryButton
+                        as="a"
                         href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject || "Your message to Wake Up & Spark"}&body=%0A%0A──────────────────%0AOriginal message from ${selectedContact.name}:%0A${selectedContact.message}`}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-                        style={{
-                          background: "linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500))",
-                          boxShadow: "0 4px 14px rgba(37, 99, 235, 0.3)",
-                        }}
                       >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
                           <line x1="22" y1="2" x2="11" y2="13" />
                           <polygon points="22 2 15 22 11 13 2 9 22 2" />
                         </svg>
                         Reply to {selectedContact.name.split(" ")[0]}
-                      </a>
+                      </PrimaryButton>
                     </div>
                   </div>
                 </div>
@@ -781,7 +1050,14 @@ export default function AdminContactsPage() {
                     style={{ background: "var(--color-primary-50)" }}
                   >
                     <svg
-                      width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                      width="40"
+                      height="40"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       style={{ color: "var(--color-primary-300)" }}
                     >
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -794,8 +1070,12 @@ export default function AdminContactsPage() {
                   >
                     Select a message
                   </h3>
-                  <p className="text-sm max-w-xs text-center" style={{ color: "var(--color-neutral-400)" }}>
-                    Choose a contact submission from the list to view its details
+                  <p
+                    className="text-sm max-w-xs text-center"
+                    style={{ color: "var(--color-neutral-400)" }}
+                  >
+                    Choose a contact submission from the list to view its
+                    details
                   </p>
                 </div>
               )}
