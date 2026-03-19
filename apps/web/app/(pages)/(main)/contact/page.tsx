@@ -15,6 +15,10 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import Label from "@/components/ui/Label";
+import TextInput from "@/components/ui/TextInput";
+import TextareaInput from "@/components/ui/TextareaInput";
+import SelectInput from "@/components/ui/SelectInput";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { sendContactEmail } from "@/actions/contactActions";
 
@@ -372,57 +376,49 @@ export default function ContactPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <div className={isRTL ? "text-right" : ""}>
-                      <label
-                        className="block text-sm font-semibold text-[#0f172a] mb-2"
-                        htmlFor="name"
-                      >
-                        {t("Form.NameLabel")}
-                      </label>
-                      <input
+                    <Label
+                      label={t("Form.NameLabel")}
+                      htmlFor="name"
+                      isRTL={isRTL}
+                    >
+                      <TextInput
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
                         placeholder={t("Form.NamePlaceholder")}
                       />
-                    </div>
-                    <div className={isRTL ? "text-right" : ""}>
-                      <label
-                        className="block text-sm font-semibold text-[#0f172a] mb-2"
-                        htmlFor="email"
-                      >
-                        {t("Form.EmailLabel")}
-                      </label>
-                      <input
+                    </Label>
+
+                    <Label
+                      label={t("Form.EmailLabel")}
+                      htmlFor="email"
+                      isRTL={isRTL}
+                    >
+                      <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
                         placeholder={t("Form.EmailPlaceholder")}
                       />
-                    </div>
+                    </Label>
                   </div>
 
-                  <div className={isRTL ? "text-right" : ""}>
-                    <label
-                      className="block text-sm font-semibold text-[#0f172a] mb-2"
-                      htmlFor="subject"
-                    >
-                      {t("Form.SubjectLabel")}
-                    </label>
-                    <select
+                  <Label
+                    label={t("Form.SubjectLabel")}
+                    htmlFor="subject"
+                    isRTL={isRTL}
+                  >
+                    <SelectInput
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition"
                     >
                       <option value="">{t("Form.SubjectPlaceholder")}</option>
                       {subjectOptions.map((option) => (
@@ -430,27 +426,24 @@ export default function ContactPage() {
                           {option.label}
                         </option>
                       ))}
-                    </select>
-                  </div>
+                    </SelectInput>
+                  </Label>
 
-                  <div className={isRTL ? "text-right" : ""}>
-                    <label
-                      className="block text-sm font-semibold text-[#0f172a] mb-2"
-                      htmlFor="message"
-                    >
-                      {t("Form.MessageLabel")}
-                    </label>
-                    <textarea
+                  <Label
+                    label={t("Form.MessageLabel")}
+                    htmlFor="message"
+                    isRTL={isRTL}
+                  >
+                    <TextareaInput
                       id="message"
                       name="message"
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-[#0f172a] placeholder:text-[#94a3b8] focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20 outline-none transition resize-none"
                       placeholder={t("Form.MessagePlaceholder")}
                     />
-                  </div>
+                  </Label>
 
                   <PrimaryButton
                     type="submit"
