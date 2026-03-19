@@ -8,7 +8,6 @@ import {
   CheckCircle,
   Clock,
   HeartHandshake,
-  Loader2,
   MapPin,
   MessageSquare,
   Send,
@@ -16,6 +15,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 import { sendContactEmail } from "@/actions/contactActions";
 
 const fadeInUp = {
@@ -452,23 +452,15 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button
+                  <PrimaryButton
                     type="submit"
-                    disabled={status === "loading"}
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#3b82f6] px-6 py-3 text-white font-semibold shadow-lg shadow-[#2563eb]/25 transition hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100"
+                    fullWidth
+                    loading={status === "loading"}
+                    loadingText={t("Form.ButtonSending")}
                   >
-                    {status === "loading" ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        {t("Form.ButtonSending")}
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        {t("Form.ButtonSend")}
-                      </>
-                    )}
-                  </button>
+                    <Send className="w-5 h-5" />
+                    {t("Form.ButtonSend")}
+                  </PrimaryButton>
                 </form>
               </div>
             </motion.div>
