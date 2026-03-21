@@ -10,6 +10,23 @@ export interface ClubMemberData {
   updatedAt: Date;
 }
 
+export interface CreateMemberInput {
+  name: string;
+  role: string;
+  image?: string;
+  isFounder: boolean;
+  schoolYear?: string;
+  order?: number;
+}
+
+export interface UpdateMemberInput {
+  id: string;
+  name?: string;
+  role?: string;
+  image?: string | null;
+  order?: number;
+}
+
 export interface ActionResult<T = undefined> {
   success: boolean;
   data?: T;
