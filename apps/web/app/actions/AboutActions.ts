@@ -3,8 +3,7 @@
 import { db } from "@monkeyprint/db";
 import { revalidatePath } from "next/cache";
 import { getCurrentSchoolYear } from "@/lib/utils";
-import { ClubMemberData, ActionResult } from "@/types";
-
+import { ClubMemberData, ActionResult, CreateMemberInput, UpdateMemberInput } from "@/types";
 
 // ─── Read ──────────────────────────────────────────────────────────────────────
 
@@ -58,15 +57,6 @@ export async function getAllMembersForAdmin(): Promise<
 
 // ─── Create ────────────────────────────────────────────────────────────────────
 
-export interface CreateMemberInput {
-  name: string;
-  role: string;
-  image?: string;
-  isFounder: boolean;
-  schoolYear?: string;
-  order?: number;
-}
-
 export async function createMember(
   input: CreateMemberInput,
 ): Promise<ActionResult<ClubMemberData>> {
@@ -112,14 +102,6 @@ export async function createMember(
 }
 
 // ─── Update ────────────────────────────────────────────────────────────────────
-
-export interface UpdateMemberInput {
-  id: string;
-  name?: string;
-  role?: string;
-  image?: string | null;
-  order?: number;
-}
 
 export async function updateMember(
   input: UpdateMemberInput,
