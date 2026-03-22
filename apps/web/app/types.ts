@@ -1,3 +1,22 @@
+// ──────────────────────────────────────────────
+// Global Types
+// ──────────────────────────────────────────────
+
+export interface ActionResult<T = undefined> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
+
+export interface UploadResponse {
+  ufsUrl: string;
+  url: string;
+}
+
+// ──────────────────────────────────────────────
+// About Us - Club Members
+// ──────────────────────────────────────────────
+
 export interface ClubMemberData {
   id: string;
   name: string;
@@ -27,8 +46,49 @@ export interface UpdateMemberInput {
   order?: number;
 }
 
-export interface ActionResult<T = undefined> {
-  success: boolean;
-  data?: T;
-  error?: string;
+// ──────────────────────────────────────────────
+// Achievements
+// ──────────────────────────────────────────────
+
+export interface AchievementData {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  date: Date | null;
+  category: string | null;
+  order: number;
+  isPublished: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CreateAchievementInput {
+  title: string;
+  description: string;
+  images: string[];
+  date?: Date | null;
+  category?: string | null;
+  order?: number;
+  isPublished?: boolean;
+}
+
+export interface UpdateAchievementInput {
+  id: string;
+  title?: string;
+  description?: string;
+  images?: string[];
+  date?: Date | null;
+  category?: string | null;
+  order?: number;
+  isPublished?: boolean;
+}
+
+export interface AchievementForm {
+  title: string;
+  description: string;
+  images: string[];
+  date: string; // ISO date string for input[type=date]
+  category: string;
+  isPublished: boolean;
 }
