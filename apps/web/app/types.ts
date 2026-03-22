@@ -111,3 +111,61 @@ export interface AchievementForm {
   category: string;
   isPublished: boolean;
 }
+
+// ──────────────────────────────────────────────
+// Achievements
+// ──────────────────────────────────────────────
+
+export type EventStatus = "UPCOMING" | "PRESENT" | "PAST";
+
+export interface EventData {
+  id: string;
+  title: string;
+  description: string | null;
+  coverImage: string | null;
+  images: string[];
+  location: string | null;
+  startDate: Date;
+  endDate: Date | null;
+  status: EventStatus;
+  createdById: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CreateEventInput {
+  title: string;
+  description?: string | null;
+  coverImage?: string | null;
+  images?: string[];
+  location?: string | null;
+  startDate: Date;
+  endDate?: Date | null;
+}
+
+export interface UpdateEventInput {
+  id: string;
+  title?: string;
+  description?: string | null;
+  coverImage?: string | null;
+  images?: string[];
+  location?: string | null;
+  startDate?: Date;
+  endDate?: Date | null;
+}
+
+export interface EventForm {
+  title: string;
+  description: string;
+  coverImage: string | null;
+  images: string[];
+  location: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface GroupedEvents {
+  present: EventData[];
+  upcoming: EventData[];
+  past: EventData[];
+}
