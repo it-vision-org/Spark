@@ -451,5 +451,31 @@
       "Categories": "Catégories",
       "ThisYear": "Cette Année"
     }
+  },
+  "EventsPage": {
+    "Hero": {
+      "Badge": "Événements du Club",
+      "Title": "Événements &",
+      "Highlight": "Rencontres",
+      "Description": "Restez informé de tout ce qui se passe chez Wake Up & Spark — des ateliers à venir aux moments passés.",
+      "StatUpcoming": "À venir",
+      "StatPast": "Passés"
+    },
+    "Empty": {
+      "Title": "Aucun événement pour l'instant",
+      "Description": "Revenez bientôt — quelque chose d'excitant est en préparation."
+    },
+    "Section": {
+      "Present": "En ce moment",
+      "Upcoming": "Événements à venir",
+      "Past": "Événements passés"
+    },
+    "Stats": {
+      "Badge": "Aperçu",
+      "Title": "Les événements en un coup d'œil",
+      "Present": "En direct",
+      "Upcoming": "À venir",
+      "Past": "Passés"
+    }
   }
 }
