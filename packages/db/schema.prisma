@@ -101,7 +101,7 @@ model User {
   profileImage         String?
   role                 Role      @default(NORMAL_USER)
   userType             UserType?
-  defaultAnonymous          Boolean   @default(false)
+  defaultAnonymous     Boolean   @default(false)
   passwordResetToken   String?   @unique
   passwordResetExpires DateTime?
   createdAt            DateTime  @default(now())
@@ -109,7 +109,7 @@ model User {
   isDeleted            Boolean   @default(false)
 
   // Admin permissions (only relevant for ADMIN role)
-  adminPermissions    AdminPermission[]
+  adminPermissions AdminPermission[]
 
   // Relations
   posts               Post[]
@@ -121,15 +121,16 @@ model User {
   quizParticipants    QuizParticipant[]
 
   // Who added this admin/super_admin
-  addedById           String?
-  addedBy             User?                 @relation("AddedByUser", fields: [addedById], references: [id], onDelete: SetNull)
-  addedUsers          User[]                @relation("AddedByUser")
-  reviewedPosts       Post[]                @relation("ReviewedPosts")
-  reviewedComments    Comment[]             @relation("ReviewedComments")
-  createdEvents       Event[]               @relation("EventCreator")
-  createdMeetings     Meeting[]             @relation("MeetingCreator")
-  createdQuizzes      Quiz[]                @relation("QuizCreator")
-  contactSubmissions  ContactSubmission[]   @relation("UserContactSubmissions")
+  addedById          String?
+  addedBy            User?               @relation("AddedByUser", fields: [addedById], references: [id], onDelete: SetNull)
+  addedUsers         User[]              @relation("AddedByUser")
+  reviewedPosts      Post[]              @relation("ReviewedPosts")
+  reviewedComments   Comment[]           @relation("ReviewedComments")
+  createdEvents      Event[]             @relation("EventCreator")
+  createdMeetings    Meeting[]           @relation("MeetingCreator")
+  createdQuizzes     Quiz[]              @relation("QuizCreator")
+  contactSubmissions ContactSubmission[] @relation("UserContactSubmissions")
+
   @@index([role])
 }
 
@@ -138,24 +139,24 @@ model User {
 // ──────────────────────────────────────────────
 
 model Post {
-  id          String     @id @default(cuid())
-  content     String     @db.Text
-  type        PostType
-  status      PostStatus @default(PENDING)
-  isAnonymous Boolean    @default(false)
-  imageUrls   String[]
+  id              String     @id @default(cuid())
+  content         String     @db.Text
+  type            PostType
+  status          PostStatus @default(PENDING)
+  isAnonymous     Boolean    @default(false)
+  imageUrls       String[]
   authorId        String
-  author          User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  originalContent String?     @db.Text // Store original before modification
+  author          User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  originalContent String?    @db.Text // Store original before modification
 
   // Super admin / admin who approved or modified
-  reviewedById  String?
-  reviewedBy    User?       @relation("ReviewedPosts", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedById String?
+  reviewedBy   User?   @relation("ReviewedPosts", fields: [reviewedById], references: [id], onDelete: SetNull)
 
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  reviewedAt    DateTime?
-  isDeleted     Boolean    @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  reviewedAt DateTime?
+  isDeleted  Boolean   @default(false)
 
   // Relations
   comments  Comment[]
@@ -174,10 +175,10 @@ model Comment {
   updatedAt DateTime      @updatedAt
   isDeleted Boolean       @default(false)
 
-  reviewedById  String?
-  reviewedBy    User?       @relation("ReviewedComments", fields: [reviewedById], references: [id], onDelete: SetNull)
-  
-  originalComment String?     @db.Text // Store original before modification
+  reviewedById String?
+  reviewedBy   User?   @relation("ReviewedComments", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  originalComment String? @db.Text // Store original before modification
 
   authorId String
   author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -190,7 +191,7 @@ model Comment {
   parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
   replies  Comment[] @relation("CommentReplies")
 
-  reviewedAt   DateTime?
+  reviewedAt DateTime?
 
   @@index([postId])
   @@index([status])
@@ -212,7 +213,6 @@ model Reaction {
   @@unique([userId, postId])
   @@index([postId])
   @@index([userId])
-
 }
 
 // ──────────────────────────────────────────────
@@ -220,22 +220,22 @@ model Reaction {
 // ──────────────────────────────────────────────
 
 model LibraryItem {
-  id          String          @id @default(cuid())
-  title       String
-  author      String?
-  type        LibraryItemType
-  description String?         @db.Text
-  coverImage  String?
-  images      String[]
-  status      PostStatus      @default(PENDING)
-  submittedById String
-  submittedBy   User   @relation(fields: [submittedById], references: [id], onDelete: Cascade)
-  originalContent String?                 @db.Text
-  isWinner    Boolean         @default(false)
-  winMonth    DateTime?       // The month it won (e.g., 2026-02-01)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  isDeleted   Boolean         @default(false)
+  id              String          @id @default(cuid())
+  title           String
+  author          String?
+  type            LibraryItemType
+  description     String?         @db.Text
+  coverImage      String?
+  images          String[]
+  status          PostStatus      @default(PENDING)
+  submittedById   String
+  submittedBy     User            @relation(fields: [submittedById], references: [id], onDelete: Cascade)
+  originalContent String?         @db.Text
+  isWinner        Boolean         @default(false)
+  winMonth        DateTime? // The month it won (e.g., 2026-02-01)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  isDeleted       Boolean         @default(false)
 
   approvedById String?
   approvedAt   DateTime?
@@ -249,7 +249,7 @@ model LibraryItem {
 }
 
 model LibraryReaction {
-  id        String              @id @default(cuid())
+  id String @id @default(cuid())
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -258,9 +258,9 @@ model LibraryReaction {
   libraryItem   LibraryItem @relation(fields: [libraryItemId], references: [id], onDelete: Cascade)
 
   type      LibraryReactionType
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
   @@unique([userId, libraryItemId])
   @@index([libraryItemId])
   @@index([userId])
@@ -275,7 +275,7 @@ model Event {
   title       String
   description String?     @db.Text
   coverImage  String?
-  images String[]
+  images      String[]
   location    String?
   startDate   DateTime
   endDate     DateTime?
@@ -299,7 +299,7 @@ model Meeting {
   id          String   @id @default(cuid())
   title       String
   description String?  @db.Text
-  link        String?  // e.g., Zoom or Google Meet link
+  link        String? // e.g., Zoom or Google Meet link
   startTime   DateTime
   endTime     DateTime
   location    String?
@@ -314,17 +314,16 @@ model Meeting {
   participants MeetingParticipant[]
 
   createdById String
-  createdBy   User     @relation("MeetingCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  createdBy   User   @relation("MeetingCreator", fields: [createdById], references: [id], onDelete: Cascade)
 
   @@index([startTime])
   @@index([createdById])
-
 }
 
 model MeetingParticipant {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   joinedAt  DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -345,15 +344,15 @@ model Quiz {
   id          String   @id @default(cuid())
   title       String
   description String?  @db.Text
-  timeLimit   Int?           // In minutes
+  timeLimit   Int? // In minutes
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   isDeleted   Boolean  @default(false)
 
   createdById String
-  createdBy   User     @relation("QuizCreator", fields: [createdById], references: [id], onDelete: Cascade)
-  
+  createdBy   User   @relation("QuizCreator", fields: [createdById], references: [id], onDelete: Cascade)
+
   questions    QuizQuestion[]
   participants QuizParticipant[]
 
@@ -364,7 +363,7 @@ model QuizQuestion {
   id            String   @id @default(cuid())
   question      String
   options       String[] // Array of possible answers
-  correctAnswer Int      // Index of the correct option
+  correctAnswer Int // Index of the correct option
   order         Int      @default(0)
   points        Int      @default(1)
 
@@ -372,7 +371,7 @@ model QuizQuestion {
   quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
   // Relations
-  answers   QuizAnswer[]
+  answers QuizAnswer[]
 
   @@index([quizId])
 }
@@ -382,7 +381,7 @@ model QuizAnswer {
   participantId  String
   participant    QuizParticipant @relation(fields: [participantId], references: [id], onDelete: Cascade)
   questionId     String
-  question       QuizQuestion   @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  question       QuizQuestion    @relation(fields: [questionId], references: [id], onDelete: Cascade)
   selectedAnswer Int
   isCorrect      Boolean
   createdAt      DateTime        @default(now())
@@ -397,14 +396,14 @@ model QuizParticipant {
   score       Int       @default(0)
   startedAt   DateTime  @default(now())
   submittedAt DateTime?
-  totalPoints Int       @default(0) 
+  totalPoints Int       @default(0)
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   answers QuizAnswer[]
-  quizId String
-  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId  String
+  quiz    Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
 
   @@unique([userId, quizId])
   @@index([quizId])
@@ -417,18 +416,40 @@ model QuizParticipant {
 // ──────────────────────────────────────────────
 
 model ClubMember {
-  id        String   @id @default(cuid())
-  name      String
-  role      String   // e.g., "President", "Vice President", "Secretary"
-  image     String?
-  isFounder Boolean  @default(false)
+  id         String   @id @default(cuid())
+  name       String
+  role       String // e.g., "President", "Vice President", "Secretary"
+  image      String?
+  isFounder  Boolean  @default(false)
   schoolYear String? // e.g., "2025/2026" — null means founder member
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isDeleted Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isDeleted  Boolean  @default(false)
 
   @@index([schoolYear])
+}
+
+// ──────────────────────────────────────────────
+// Achievements
+// ──────────────────────────────────────────────
+
+model Achievement {
+  id          String    @id @default(cuid())
+  title       String
+  description String    @db.Text
+  images      String[]
+  date        DateTime?
+  category    String?
+  order       Int       @default(0)
+  isPublished Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  isDeleted   Boolean   @default(false)
+
+  @@index([isPublished])
+  @@index([createdAt])
+  @@index([order])
 }
 
 // ──────────────────────────────────────────────
@@ -444,8 +465,8 @@ model ContactSubmission {
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 
-  userId    String?  // If user is logged in
-  user      User?    @relation("UserContactSubmissions", fields: [userId], references: [id], onDelete: SetNull)
+  userId String? // If user is logged in
+  user   User?   @relation("UserContactSubmissions", fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([isRead])
   @@index([createdAt])
