@@ -451,5 +451,31 @@
       "Categories": "Categories",
       "ThisYear": "This Year"
     }
+  },
+  "EventsPage": {
+    "Hero": {
+      "Badge": "Club Events",
+      "Title": "Events &",
+      "Highlight": "Gatherings",
+      "Description": "Stay up to date with everything happening at Wake Up & Spark — from upcoming workshops to past milestones.",
+      "StatUpcoming": "Coming Up",
+      "StatPast": "Past Events"
+    },
+    "Empty": {
+      "Title": "No events yet",
+      "Description": "Check back soon — something exciting is being planned."
+    },
+    "Section": {
+      "Present": "Happening Now",
+      "Upcoming": "Upcoming Events",
+      "Past": "Past Events"
+    },
+    "Stats": {
+      "Badge": "Overview",
+      "Title": "Events at a Glance",
+      "Present": "Live Now",
+      "Upcoming": "Upcoming",
+      "Past": "Past"
+    }
   }
 }
