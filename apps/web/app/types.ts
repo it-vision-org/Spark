@@ -13,6 +13,25 @@ export interface UploadResponse {
   url: string;
 }
 
+export interface ImageCarouselProps {
+  images: string[];
+  initialIndex?: number;
+  alt?: string;
+  onClose: () => void;
+}
+
+export interface CarouselState {
+  images: string[];
+  startIndex: number;
+  title: string;
+}
+
+export interface ImageGalleryProps {
+  images: string[];
+  title: string;
+  onImageClick: (index: number) => void;
+}
+
 // ──────────────────────────────────────────────
 // About Us - Club Members
 // ──────────────────────────────────────────────
@@ -88,7 +107,7 @@ export interface AchievementForm {
   title: string;
   description: string;
   images: string[];
-  date: string; // ISO date string for input[type=date]
+  date: string;
   category: string;
   isPublished: boolean;
 }
