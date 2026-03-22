@@ -431,5 +431,25 @@
       "SchoolYearNote": "This list is managed by the Super Admin and updated each academic year.",
       "Empty": "No members have been added for this school year yet."
     }
+  },
+  "AchievementsPage": {
+    "Hero": {
+      "Badge": "Our Achievements",
+      "Title": "Milestones &",
+      "Highlight": "Proud Moments",
+      "Description": "A collection of the accomplishments, awards, and milestones that define the Wake Up & Spark club's journey.",
+      "StatLabel": "Achievements"
+    },
+    "Empty": {
+      "Title": "No achievements yet",
+      "Description": "Check back soon — great things are coming."
+    },
+    "Stats": {
+      "Badge": "By the Numbers",
+      "Title": "Our Impact at a Glance",
+      "Total": "Total Achievements",
+      "Categories": "Categories",
+      "ThisYear": "This Year"
+    }
   }
 }
